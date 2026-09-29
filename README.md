@@ -16,3 +16,6 @@ Requirements and business rules: see [CLAUDE.md](CLAUDE.md).
 - `npm run dev` / `npm run build` / `npm start` (honours `$PORT`)
 - `npm test` for unit tests
 - `npm run db:generate` after changing `src/db/schema.ts`, then `npm run db:migrate`
+- `npm run seed-clients` / `npm run seed-company` add the default clients, partners, bank account and staff (safe to re-run)
+- `npm run demo -- add|remove` loads or removes the Aug 2026 demo data
+- Deployment: see [DEPLOY.md](DEPLOY.md)

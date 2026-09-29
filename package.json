@@ -13,7 +13,8 @@
     "create-user": "tsx scripts/create-user.ts",
     "seed-clients": "tsx scripts/seed-clients.ts",
     "demo": "tsx scripts/demo-data.ts",
-    "seed-company": "tsx scripts/seed-company.ts"
+    "seed-company": "tsx scripts/seed-company.ts",
+    "build:hostinger": "drizzle-kit migrate && tsx scripts/seed-clients.ts && tsx scripts/seed-company.ts && next build"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

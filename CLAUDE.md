@@ -196,7 +196,11 @@ Decided with the owner (Sep 2026):
 - Start: accounting month **October 2026**, opening balances entered manually.
 - **Profit is recognised when money is received** (owner chose option A): a month's income = PKR actually credited in that month. Unpaid invoice amounts are shown as **"Previous balance outstanding"** on the client's next invoice (same currency), and a lump payment is applied to the **oldest unpaid invoice first**.
 - Built (Sep 2026): Company section (`/company`: Overview, Invoices, Payments received, Expenses), client "Invoices & payments" tab with recurring billing plans, invoice PDF (`/print/invoice/[id]`, with the monthly summary for statement invoices). Closing a month creates the invoice automatically (not when nothing is due). Invoice rules are pure functions in `src/lib/invoices/calc.ts` (tested). PKR rates: open.er-api.com (latest only), cached in `fx_rates`. `npm run seed-company` creates the partners and the Albaraka account on a fresh database.
-- Still to build: payroll, partner balances and profit sharing, assets register; payroll and partner payouts will also reduce the bank balance.
+- **Payroll** (`/company/payroll`, `src/lib/payroll.ts`): one line per staff per month worked; commission base = `netSalesForStores()` in `src/lib/statement/load.ts` (all deduction groups, only expenses assigned to the chosen stores); PKR rate = effective rate of the client's payments on that month's invoice, else today's interbank (editable). Salaries count as a cost in the month **paid**. Payslip PDF `/print/payslip/[id]`.
+- **Partners** (`/company/partners`, `src/lib/partners/`): balance = entries (opening, profit share, drawings, personal expenses, transfers, adjustments) + company expenses and salaries the partner paid personally. Positive = company owes the partner. "Who owes whom" = each partner's gap to their share of the combined balance (tested with the owner's 145k/200k/55k example). Company months close in order from `BOOKS_START` (2026-10) and post profit (or loss) shares; only the latest can be reopened.
+- **Bank balance** = opening + payments received − expenses − salaries − partner withdrawals/personal expenses paid from the account.
+- **Assets** (`/company/assets`): register with add/edit/remove (sold, disposed, lost, given away) and an option to book the purchase as a Hardware expense.
+- First-run: with no users, `/login` shows a "create administrator" form (for Hostinger without shell access). Deployment steps in `DEPLOY.md`.
 
 ## Demo data (remove before go-live)
 

@@ -8,6 +8,9 @@ const TABS = [
   { href: "/company/invoices", label: "Invoices" },
   { href: "/company/payments", label: "Payments received" },
   { href: "/company/expenses", label: "Expenses" },
+  { href: "/company/payroll", label: "Payroll" },
+  { href: "/company/partners", label: "Partners" },
+  { href: "/company/assets", label: "Assets" },
 ];
 
 export function CompanyTabs() {

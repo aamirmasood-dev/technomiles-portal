@@ -4,6 +4,8 @@ import { db, clients, companyAccounts, partners } from "@/db";
 import { currentPeriod, isPeriod, shiftPeriod } from "./period";
 
 export const COMPANY_TZ = "Asia/Karachi";
+// First month of the company books (profit sharing starts here).
+export const BOOKS_START = "2026-10";
 
 export function companyPeriod(searchParams: Record<string, string | string[] | undefined>) {
   const m = searchParams.month;

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { and, eq, gte, lt, sql } from "drizzle-orm";
+import { and, gte, lt } from "drizzle-orm";
 import { db, companyExpenses, payments } from "@/db";
+import { accountBalances, monthFigures, partnerSummary } from "@/lib/partners/service";
 import { requireAdmin } from "@/lib/auth";
 import { COMPANY_TZ, companyLookups, companyPeriod, monthBounds } from "@/lib/company";
 import { allInvoices } from "@/lib/invoices/queries";
@@ -35,19 +36,8 @@ export default async function CompanyOverviewPage(props: PageProps<"/company">) 
   const expenseBy = new Map<string, number>();
   for (const e of monthExpenses) expenseBy.set(COMPANY_EXPENSE_LABELS[e.category], (expenseBy.get(COMPANY_EXPENSE_LABELS[e.category]) ?? 0) + e.pkrAmount);
 
-  // Bank balance: opening + money received into it - expenses paid from it (payroll and partner payouts follow).
-  const balances = await Promise.all(
-    lookups.accounts.map(async (a) => {
-      const [[inflow], [outflow]] = await Promise.all([
-        db.select({ n: sql<string>`coalesce(sum(${payments.pkrReceived}), 0)` }).from(payments).where(and(eq(payments.accountId, a.id), gte(payments.receivedDate, a.openingDate))),
-        db
-          .select({ n: sql<string>`coalesce(sum(${companyExpenses.pkrAmount}), 0)` })
-          .from(companyExpenses)
-          .where(and(eq(companyExpenses.accountId, a.id), gte(companyExpenses.expenseDate, a.openingDate))),
-      ]);
-      return { account: a, balance: a.openingBalance + Number(inflow.n) - Number(outflow.n) };
-    }),
-  );
+  const [balances, figures, partnersNow] = await Promise.all([accountBalances(), monthFigures(period), partnerSummary()]);
+  const partnerName = new Map(partnersNow.partners.map((p) => [p.partner.id, p.partner.name]));
   const outstanding = new Map<string, number>();
   for (const r of invoiceRows) if (r.outstanding) outstanding.set(r.invoice.currency, (outstanding.get(r.invoice.currency) ?? 0) + r.outstanding);
 
@@ -62,8 +52,15 @@ export default async function CompanyOverviewPage(props: PageProps<"/company">) 
         {[
           ["Money received", pkr(income), "payments that arrived this month"],
           ["Company expenses", pkr(expenses), "rent, bills, subscriptions…"],
-          ["Profit before salaries", pkr(income - expenses), "salaries and partner shares come next"],
+          ["Salaries paid", pkr(figures.payroll), "payroll paid this month"],
+          ["Profit", pkr(figures.profit), "split 50/50 when the month is closed"],
           ...balances.map((b) => [`${b.account.name} balance`, pkr(b.balance), `since opening on ${b.account.openingDate}`]),
+          ...partnersNow.partners.map((p) => [`${p.partner.name}`, pkr(p.balance), p.balance >= 0 ? "company owes partner" : "partner owes company"]),
+          [
+            "Between partners",
+            partnersNow.settlements.length ? partnersNow.settlements.map((x) => `${partnerName.get(x.from)?.split(" ")[0]} owes ${partnerName.get(x.to)?.split(" ")[0]} ${pkr(x.amount)}`).join("; ") : "Even",
+            "carried forward until settled",
+          ],
         ].map(([label, value, sub]) => (
           <div key={label} className="rounded-lg border border-gray-200 bg-white p-4">
             <p className="text-sm text-gray-500">{label}</p>

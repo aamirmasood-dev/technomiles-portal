@@ -16,6 +16,7 @@ import {
   statementAdjustments,
   statements,
   stores,
+  DEDUCTION_GROUPS,
 } from "@/db";
 import { loadConverter } from "@/lib/fx";
 import { createInvoice, getPkrRate, takeInvoiceNumber } from "@/lib/invoices/service";
@@ -322,4 +323,26 @@ export async function reopenStatement(client: Client, term: Term, period: string
       );
     await tx.delete(statements).where(eq(statements.id, last.id));
   });
+}
+
+// "Net sales after all expenses" of some of a client's stores for a month (used for staff commission):
+// sales + shipping charged - every deduction group, counting only expenses assigned to those stores.
+export async function netSalesForStores(client: Client, storeIds: number[], period: string) {
+  const term: Term = {
+    id: 0,
+    clientId: client.id,
+    name: "Commission base",
+    baseLabel: "Net sales",
+    rateBps: 0,
+    fixedFee: 0,
+    groups: [...DEDUCTION_GROUPS],
+    includeShipping: true,
+    includeTax: false,
+    storeIds,
+    carryForwardLoss: false,
+    effectiveFrom: period,
+    effectiveTo: null,
+  };
+  const r = computeStatement({ ...(await loadInputs(client, term, period)), lossBroughtForward: 0, adjustments: [] });
+  return { net: r.baseBeforeCarry, currency: r.currency, result: r };
 }

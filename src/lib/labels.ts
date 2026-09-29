@@ -92,3 +92,7 @@ export const COMPANY_EXPENSE_LABELS: Record<CompanyExpenseCategory, string> = {
   HARDWARE: "Hardware & equipment",
   OTHER: "Other",
 };
+
+export const ASSET_CATEGORY_LABELS = { FURNITURE: "Furniture (tables, chairs…)", COMPUTERS: "Computers", LAPTOPS: "Laptops", ELECTRONICS: "Other electronics", OTHER: "Miscellaneous" } as const;
+export const ASSET_CONDITION_LABELS = { NEW: "New", GOOD: "Good", FAIR: "Fair", POOR: "Poor", BROKEN: "Broken" } as const;
+export const ASSET_REMOVAL_LABELS = { SOLD: "Sold", DISPOSED: "Disposed / scrapped", LOST: "Lost / stolen", GIVEN_AWAY: "Given away" } as const;

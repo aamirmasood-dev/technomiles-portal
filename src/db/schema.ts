@@ -437,3 +437,106 @@ export const companyRecurringExpenses = mysqlTable("company_recurring_expenses",
   amount: money("amount").notNull(), // PKR
   active: boolean("active").notNull().default(true),
 });
+
+// ---------------- Payroll ----------------
+
+export const staffMembers = mysqlTable("staff_members", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 191 }).notNull(),
+  jobTitle: varchar("job_title", { length: 191 }),
+  payType: mysqlEnum("pay_type", ["SALARY", "COMMISSION"]).notNull(),
+  monthlySalary: money("monthly_salary"), // PKR, for SALARY
+  // COMMISSION: rate of "net sales after all expenses" of the chosen stores of one client (Ehsaan: 1% of Kensingtons Amazon + eBay).
+  commissionBps: int("commission_bps"),
+  commissionClientId: id("commission_client_id"),
+  commissionStoreIds: json("commission_store_ids").$type<number[]>(),
+  startDate: date("start_date", { mode: "string" }),
+  active: boolean("active").notNull().default(true),
+  notes: text("notes"),
+});
+
+// One line per staff member per work month. Paid (and counted as a company cost) when `paidDate` is set.
+export const payrollItems = mysqlTable(
+  "payroll_items",
+  {
+    id: serial("id").primaryKey(),
+    staffId: id("staff_id").notNull(),
+    period: char("period", { length: 7 }).notNull(), // the month worked
+    basePay: money("base_pay").notNull(), // PKR: salary, or commission converted to PKR
+    // Commission working (null for salaried staff)
+    commissionBase: money("commission_base"), // net sales in commissionCurrency
+    commissionAmount: money("commission_amount"), // in commissionCurrency
+    commissionCurrency: char("commission_currency", { length: 3 }),
+    fxRate: decimal("fx_rate", { precision: 18, scale: 6 }), // PKR per unit
+    fxSource: varchar("fx_source", { length: 191 }),
+    bonus: money("bonus").notNull().default(0),
+    deductions: money("deductions").notNull().default(0),
+    advance: money("advance").notNull().default(0), // advance recovered from this pay
+    netPay: money("net_pay").notNull(),
+    notes: varchar("notes", { length: 512 }),
+    paidDate: date("paid_date", { mode: "string" }),
+    paidByPartnerId: id("paid_by_partner_id"),
+    accountId: id("account_id"),
+  },
+  (t) => [uniqueIndex("payroll_staff_period_uq").on(t.staffId, t.period)],
+);
+
+// ---------------- Partners ----------------
+
+export const PARTNER_ENTRY_TYPES = ["OPENING", "PROFIT_SHARE", "WITHDRAWAL", "PERSONAL_EXPENSE", "TRANSFER", "ADJUSTMENT"] as const;
+export type PartnerEntryType = (typeof PARTNER_ENTRY_TYPES)[number];
+
+// A partner's running balance with the company, in PKR. Positive = the company owes the partner.
+// Company expenses and payroll paid by a partner personally are added from those tables, not stored here.
+export const partnerEntries = mysqlTable(
+  "partner_entries",
+  {
+    id: serial("id").primaryKey(),
+    partnerId: id("partner_id").notNull(),
+    entryDate: date("entry_date", { mode: "string" }).notNull(),
+    type: mysqlEnum("type", PARTNER_ENTRY_TYPES).notNull(),
+    amount: money("amount").notNull(), // signed
+    description: varchar("description", { length: 512 }).notNull(),
+    period: char("period", { length: 7 }), // PROFIT_SHARE
+    accountId: id("account_id"), // WITHDRAWAL paid from this company account
+    transferGroup: varchar("transfer_group", { length: 36 }), // pairs the two sides of a TRANSFER
+    createdBy: id("created_by"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [index("partner_entries_idx").on(t.partnerId, t.entryDate)],
+);
+
+// A company month closed for profit sharing (money received - expenses - salaries paid, split by share).
+export const companyMonths = mysqlTable("company_months", {
+  id: serial("id").primaryKey(),
+  period: char("period", { length: 7 }).notNull().unique(),
+  income: money("income").notNull(),
+  expenses: money("expenses").notNull(),
+  payroll: money("payroll").notNull(),
+  profit: money("profit").notNull(),
+  closedAt: datetime("closed_at").notNull(),
+  closedBy: id("closed_by"),
+});
+
+// ---------------- Assets ----------------
+
+export const ASSET_CATEGORIES = ["FURNITURE", "COMPUTERS", "LAPTOPS", "ELECTRONICS", "OTHER"] as const;
+export const ASSET_CONDITIONS = ["NEW", "GOOD", "FAIR", "POOR", "BROKEN"] as const;
+export const ASSET_REMOVAL_REASONS = ["SOLD", "DISPOSED", "LOST", "GIVEN_AWAY"] as const;
+
+export const assets = mysqlTable("assets", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 191 }).notNull(),
+  category: mysqlEnum("category", ASSET_CATEGORIES).notNull(),
+  quantity: int("quantity").notNull().default(1),
+  purchaseDate: date("purchase_date", { mode: "string" }),
+  unitPrice: money("unit_price").notNull().default(0), // PKR
+  condition: mysqlEnum("condition", ASSET_CONDITIONS).notNull().default("GOOD"),
+  location: varchar("location", { length: 191 }), // where it is / who uses it
+  serialNumber: varchar("serial_number", { length: 191 }),
+  notes: text("notes"),
+  removedDate: date("removed_date", { mode: "string" }),
+  removalReason: mysqlEnum("removal_reason", ASSET_REMOVAL_REASONS),
+  removalValue: money("removal_value"), // PKR received if sold
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
