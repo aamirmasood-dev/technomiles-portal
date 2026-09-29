@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { and, asc, eq, gte, inArray, isNull, lt, ne, or } from "drizzle-orm";
+import { and, asc, eq, gte, inArray, isNull, lt, or, notInArray } from "drizzle-orm";
 import { db, orderCosts, orderItems, orders, stores } from "@/db";
 import { requireUser } from "@/lib/auth";
 import { resolvePeriod } from "@/lib/filters";
@@ -39,7 +39,7 @@ export default async function OrdersPage(props: PageProps<"/clients/[id]/orders"
               ),
               gte(orders.orderDate, start),
               lt(orders.orderDate, end),
-              or(isNull(orders.status), ne(orders.status, "CANCELLED")),
+              or(isNull(orders.status), notInArray(orders.status, ["CANCELLED", "UNPAID"])),
             ),
           )
           .orderBy(asc(orders.orderDate));

@@ -1,5 +1,5 @@
 import "server-only";
-import { and, asc, desc, eq, gte, inArray, isNull, lt, lte, ne, or, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, inArray, isNull, lt, lte, or, sql, notInArray } from "drizzle-orm";
 import {
   db,
   businessSettings,
@@ -80,7 +80,7 @@ async function loadInputs(client: Client, term: Term, period: string): Promise<O
               inArray(orders.storeId, storeIds),
               gte(orders.orderDate, start),
               lt(orders.orderDate, end),
-              or(isNull(orders.status), ne(orders.status, "CANCELLED")),
+              or(isNull(orders.status), notInArray(orders.status, ["CANCELLED", "UNPAID"])),
             ),
           ),
   ]);

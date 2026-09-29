@@ -9,6 +9,7 @@ const TABS = [
   { path: "/orders", label: "Orders", monthly: true },
   { path: "/expenses", label: "Expenses", monthly: true },
   { path: "/statement", label: "Profit sheet", monthly: true },
+  { path: "/transactions", label: "Transactions", monthly: true },
   { path: "/stores", label: "Stores", monthly: false },
   { path: "/setup", label: "Contract & setup", monthly: false },
 ];

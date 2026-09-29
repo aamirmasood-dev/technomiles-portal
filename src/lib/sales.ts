@@ -134,7 +134,7 @@ export async function salesAnalysis(f: SalesFilter): Promise<CurrencySales[]> {
     }
   }
   for (const o of orderRows) {
-    if (o.status === "CANCELLED") continue;
+    if (o.status === "CANCELLED" || o.status === "UNPAID") continue;
     const { store, client } = storeInfo.get(o.storeId)!;
     const date = localDate(o.orderDate, client.timezone);
     if (date < f.from || date > f.to) continue;

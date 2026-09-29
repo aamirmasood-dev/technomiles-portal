@@ -53,7 +53,7 @@ export default async function StoresPage(props: PageProps<"/clients/[id]/stores"
                 </td>
                 <td className="text-right">
                   <Link href={`/clients/${client.id}/stores/${s.id}`} className="link">
-                    Edit
+                    {s.credentialsEnc ? "Open" : "Connect"}
                   </Link>
                 </td>
               </tr>
