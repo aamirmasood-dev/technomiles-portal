@@ -318,3 +318,122 @@ export const syncLogs = mysqlTable(
   },
   (t) => [index("sync_logs_store_idx").on(t.storeId, t.startedAt)],
 );
+
+// ---------------- Company accounts (admin only) ----------------
+// Company books are in PKR (minor units = paisa). See CLAUDE.md "Company accounts".
+
+export const partners = mysqlTable("partners", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 191 }).notNull(),
+  shareBps: int("share_bps").notNull(), // 5000 = 50%
+  userId: id("user_id"),
+  active: boolean("active").notNull().default(true),
+});
+
+// Where company money sits (e.g. Albaraka Bank, PKR).
+export const companyAccounts = mysqlTable("company_accounts", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 191 }).notNull(),
+  currency: char("currency", { length: 3 }).notNull(),
+  openingBalance: money("opening_balance").notNull().default(0),
+  openingDate: date("opening_date", { mode: "string" }).notNull(),
+  active: boolean("active").notNull().default(true),
+});
+
+export const invoices = mysqlTable(
+  "invoices",
+  {
+    id: serial("id").primaryKey(),
+    clientId: id("client_id").notNull(),
+    invoiceNumber: varchar("invoice_number", { length: 64 }).notNull().unique(),
+    issueDate: date("issue_date", { mode: "string" }).notNull(),
+    dueDate: date("due_date", { mode: "string" }).notNull(),
+    currency: char("currency", { length: 3 }).notNull(),
+    amount: money("amount").notNull(), // sum of lines, invoice currency
+    // PKR per 1 unit of the invoice currency, shown on the invoice (interbank rate on the issue date, editable).
+    pkrRate: decimal("pkr_rate", { precision: 18, scale: 6 }),
+    statementId: id("statement_id").unique(), // set when created by closing a monthly statement
+    period: char("period", { length: 7 }),
+    notes: text("notes"),
+    // "Mark as fully received": anything still unpaid is written off (usually an exchange-rate shortfall).
+    settledAt: datetime("settled_at"),
+    settledNote: varchar("settled_note", { length: 512 }),
+    voidedAt: datetime("voided_at"),
+    createdBy: id("created_by"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [index("invoices_client_idx").on(t.clientId, t.issueDate)],
+);
+
+export const invoiceLines = mysqlTable("invoice_lines", {
+  id: serial("id").primaryKey(),
+  invoiceId: id("invoice_id").notNull(),
+  description: varchar("description", { length: 512 }).notNull(),
+  amount: money("amount").notNull(),
+  sortOrder: int("sort_order").notNull().default(0),
+});
+
+// Money received. Allocated to an invoice, or standalone income (e.g. a one-off project paid without an invoice).
+export const payments = mysqlTable(
+  "payments",
+  {
+    id: serial("id").primaryKey(),
+    clientId: id("client_id"),
+    invoiceId: id("invoice_id"),
+    receivedDate: date("received_date", { mode: "string" }).notNull(),
+    currency: char("currency", { length: 3 }).notNull(),
+    amount: money("amount").notNull(), // in `currency`
+    pkrReceived: money("pkr_received").notNull(), // what the bank actually credited, in paisa
+    accountId: id("account_id"),
+    reference: varchar("reference", { length: 191 }),
+    description: varchar("description", { length: 512 }),
+    createdBy: id("created_by"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [index("payments_date_idx").on(t.receivedDate), index("payments_invoice_idx").on(t.invoiceId)],
+);
+
+// Recurring billing for service clients (hosting, website management).
+export const billingPlans = mysqlTable("billing_plans", {
+  id: serial("id").primaryKey(),
+  clientId: id("client_id").notNull(),
+  description: varchar("description", { length: 512 }).notNull(),
+  amount: money("amount").notNull(),
+  currency: char("currency", { length: 3 }).notNull(),
+  interval: mysqlEnum("billing_interval", ["MONTHLY", "YEARLY"]).notNull(),
+  nextDueDate: date("next_due_date", { mode: "string" }).notNull(),
+  active: boolean("active").notNull().default(true),
+});
+
+export const COMPANY_EXPENSE_CATEGORIES = ["RENT", "INTERNET", "UTILITIES", "SUBSCRIPTIONS", "HARDWARE", "OTHER"] as const;
+export type CompanyExpenseCategory = (typeof COMPANY_EXPENSE_CATEGORIES)[number];
+
+export const companyExpenses = mysqlTable(
+  "company_expenses",
+  {
+    id: serial("id").primaryKey(),
+    expenseDate: date("expense_date", { mode: "string" }).notNull(),
+    category: mysqlEnum("category", COMPANY_EXPENSE_CATEGORIES).notNull(),
+    description: varchar("description", { length: 512 }).notNull(),
+    currency: char("currency", { length: 3 }).notNull(),
+    amount: money("amount").notNull(), // in `currency`
+    pkrAmount: money("pkr_amount").notNull(), // cost to the company in PKR
+    // Who paid: a partner personally (the company then owes them), else the company account.
+    paidByPartnerId: id("paid_by_partner_id"),
+    accountId: id("account_id"),
+    recurringId: id("recurring_id"),
+    notes: text("notes"),
+    createdBy: id("created_by"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [index("company_expenses_date_idx").on(t.expenseDate)],
+);
+
+// Fixed monthly company expenses (rent, internet...), added to a month with one click.
+export const companyRecurringExpenses = mysqlTable("company_recurring_expenses", {
+  id: serial("id").primaryKey(),
+  category: mysqlEnum("category", COMPANY_EXPENSE_CATEGORIES).notNull(),
+  description: varchar("description", { length: 512 }).notNull(),
+  amount: money("amount").notNull(), // PKR
+  active: boolean("active").notNull().default(true),
+});

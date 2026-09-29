@@ -4,24 +4,36 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { periodLabel, shiftPeriod } from "@/lib/period";
 
+// `marketplace`: only for store-management clients (service and project clients are billed by invoice only).
 const TABS = [
-  { path: "", label: "Overview", monthly: true, staff: false },
-  { path: "/orders", label: "Orders", monthly: true, staff: true },
-  { path: "/expenses", label: "Expenses", monthly: true, staff: true },
-  { path: "/statement", label: "Profit sheet", monthly: true, staff: false },
-  { path: "/transactions", label: "Transactions", monthly: true, staff: false },
-  { path: "/stores", label: "Stores", monthly: false, staff: true },
-  { path: "/setup", label: "Contract & setup", monthly: false, staff: false },
+  { path: "", label: "Overview", monthly: true, staff: false, marketplace: true },
+  { path: "/orders", label: "Orders", monthly: true, staff: true, marketplace: true },
+  { path: "/expenses", label: "Expenses", monthly: true, staff: true, marketplace: true },
+  { path: "/statement", label: "Profit sheet", monthly: true, staff: false, marketplace: true },
+  { path: "/transactions", label: "Transactions", monthly: true, staff: false, marketplace: true },
+  { path: "/invoices", label: "Invoices & payments", monthly: false, staff: false, marketplace: false },
+  { path: "/stores", label: "Stores", monthly: false, staff: true, marketplace: true },
+  { path: "/setup", label: "Contract & setup", monthly: false, staff: false, marketplace: false },
 ];
 
-export function ClientTabs({ clientId, defaultPeriod, admin }: { clientId: number; defaultPeriod: string; admin: boolean }) {
+export function ClientTabs({
+  clientId,
+  defaultPeriod,
+  admin,
+  marketplace,
+}: {
+  clientId: number;
+  defaultPeriod: string;
+  admin: boolean;
+  marketplace: boolean;
+}) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const base = `/clients/${clientId}`;
   const month = searchParams.get("month") ?? defaultPeriod;
   const rest = pathname.slice(base.length);
-  const tabs = TABS.filter((t) => admin || t.staff);
+  const tabs = TABS.filter((t) => (admin || t.staff) && (marketplace || !t.marketplace));
   const active = tabs.filter((t) => (t.path === "" ? rest === "" : rest.startsWith(t.path))).at(-1) ?? null;
   const qs = searchParams.get("month") ? `?month=${month}` : "";
   const months = Array.from({ length: 18 }, (_, i) => shiftPeriod(defaultPeriod, 2 - i));

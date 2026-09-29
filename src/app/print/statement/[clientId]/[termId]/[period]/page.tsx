@@ -1,13 +1,12 @@
 import { eq } from "drizzle-orm";
-import { notFound } from "next/navigation";
-import { db, businessSettings } from "@/db";
+import { notFound, redirect } from "next/navigation";
+import { db, businessSettings, invoices } from "@/db";
 import { requireAdmin } from "@/lib/auth";
 import { formatMoney } from "@/lib/money";
 import { isPeriod, periodLabel } from "@/lib/period";
 import { getClientOr404, getTermOr404, parseId } from "@/lib/queries";
 import { getStatementView } from "@/lib/statement/load";
-import { DEDUCTION_GROUP_LABELS } from "@/lib/labels";
-import { StatementSummary, StoreTable } from "@/components/statement/breakdown";
+import { MonthlySummary } from "@/components/statement/monthly-summary";
 import { PrintButton } from "../../../../print-button";
 
 export default async function PrintStatementPage(props: PageProps<"/print/statement/[clientId]/[termId]/[period]">) {
@@ -20,14 +19,17 @@ export default async function PrintStatementPage(props: PageProps<"/print/statem
     getStatementView(client, term, p.period),
     db.select().from(businessSettings).where(eq(businessSettings.id, 1)),
   ]);
+  // A closed month has a real invoice (with PKR and previous balance): show that instead.
+  if (v.closed) {
+    const [inv] = await db.select({ id: invoices.id }).from(invoices).where(eq(invoices.statementId, v.closed.id));
+    if (inv) redirect(`/print/invoice/${inv.id}`);
+  }
   const r = v.result;
   const m = (n: number) => formatMoney(n, r.currency);
   const invoiceDate = v.closed ? v.closed.closedAt : new Date();
   const due = new Date(invoiceDate.getTime() + (biz?.paymentTermsDays ?? 14) * 86400000);
   const fmtDate = (d: Date) => d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-  const courierTotal = r.couriers.reduce((a, c) => a + c.amount, 0);
-  const shippingGroup = r.groups.find((g) => g.group === "SHIPPING");
 
   return (
     <div className="mx-auto max-w-[210mm] bg-white text-gray-900 print:max-w-none">
@@ -125,64 +127,7 @@ export default async function PrintStatementPage(props: PageProps<"/print/statem
         {biz?.invoiceFooter && <p className="mt-8 text-center text-xs whitespace-pre-line text-gray-500">{biz.invoiceFooter}</p>}
       </section>
 
-      {/* Part 2: monthly summary */}
-      <section className="page-break border-t border-dashed border-gray-300 p-10 print:border-0 print:p-0">
-        <h2 className="text-xl font-semibold">Monthly summary: {periodLabel(r.period)}</h2>
-        <p className="text-sm text-gray-500">
-          {client.name} · {v.closed?.invoiceNumber ?? "Draft"} · amounts in {r.currency}
-        </p>
-
-        <h3 className="mt-6 mb-2 text-sm font-semibold">Sales by platform</h3>
-        <StoreTable r={r} />
-
-        <h3 className="mt-6 mb-2 text-sm font-semibold">Shipping</h3>
-        <table className="w-full text-sm">
-          <tbody>
-            <tr>
-              <td className="py-1">Shipping charged to customers</td>
-              <td className="py-1 text-right tabular-nums">{m(r.gross.shippingCharged)}</td>
-            </tr>
-            <tr>
-              <td className="py-1">Postage labels bought on platforms</td>
-              <td className="py-1 text-right tabular-nums">{m(-(shippingGroup?.platform ?? 0))}</td>
-            </tr>
-            {r.couriers.map((c) => (
-              <tr key={c.name}>
-                <td className="py-1">{c.name}</td>
-                <td className="py-1 text-right tabular-nums">{m(-c.amount)}</td>
-              </tr>
-            ))}
-            <tr className="border-t border-gray-200 font-semibold">
-              <td className="py-1">Total shipping costs</td>
-              <td className="py-1 text-right tabular-nums">{m(-((shippingGroup?.platform ?? 0) + courierTotal))}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 className="mt-6 mb-2 text-sm font-semibold">Income and expenses</h3>
-        <table className="w-full text-sm">
-          <tbody>
-            <tr className="font-medium">
-              <td className="py-1">Gross sales</td>
-              <td className="py-1 text-right tabular-nums">{m(r.gross.total)}</td>
-            </tr>
-            {r.groups
-              .filter((g) => g.applied)
-              .map((g) => (
-                <tr key={g.group}>
-                  <td className="py-1 pl-4">{DEDUCTION_GROUP_LABELS[g.group]}</td>
-                  <td className="py-1 text-right tabular-nums">{m(-g.total)}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        <div className="mt-4 border-t border-gray-300 pt-2">
-          <StatementSummary r={r} baseLabel={term.baseLabel} />
-        </div>
-        {r.foreign.length > 0 && (
-          <p className="mt-3 text-xs text-gray-500">Foreign-currency sales converted to {r.currency} at the ECB reference rate on each transaction date.</p>
-        )}
-      </section>
+      <MonthlySummary r={r} clientName={client.name} invoiceNumber={v.closed?.invoiceNumber ?? null} baseLabel={term.baseLabel} />
     </div>
   );
 }

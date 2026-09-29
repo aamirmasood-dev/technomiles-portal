@@ -183,7 +183,7 @@ Left menu: **Dashboard**, **Clients** (dropdown listing every client, plus "All 
 
 `MARKETPLACE` (ongoing store management, monthly profit sheet), `SERVICE` (web development / hosting / website management billed monthly or yearly), `PROJECT` (one-time work). Service and project clients are billed through invoices (below) rather than statements.
 
-## Company accounts (in progress)
+## Company accounts
 
 Decided with the owner (Sep 2026):
 - Company books in **PKR**; bank: **Albaraka Bank (PKR)**. Partners may also pay company expenses personally.
@@ -194,7 +194,9 @@ Decided with the owner (Sep 2026):
 - **Partners**: monthly company profit split 50/50 into each partner's running balance; payments to partners, partner-paid expenses and opening balances (entered manually for Oct 2026) all post to it; carried forward every month; the statement says who owes whom (e.g. Imran took 55k more than his share → "Imran owes Aamir 55k", accumulating until cleared).
 - **Assets**: item, category, quantity, purchase date, price, condition, location/assigned to; add and remove (sold/disposed/lost with date and value).
 - Start: accounting month **October 2026**, opening balances entered manually.
-- Open question: profit recognised when money is **received** (recommended) or when invoiced.
+- **Profit is recognised when money is received** (owner chose option A): a month's income = PKR actually credited in that month. Unpaid invoice amounts are shown as **"Previous balance outstanding"** on the client's next invoice (same currency), and a lump payment is applied to the **oldest unpaid invoice first**.
+- Built (Sep 2026): Company section (`/company`: Overview, Invoices, Payments received, Expenses), client "Invoices & payments" tab with recurring billing plans, invoice PDF (`/print/invoice/[id]`, with the monthly summary for statement invoices). Closing a month creates the invoice automatically (not when nothing is due). Invoice rules are pure functions in `src/lib/invoices/calc.ts` (tested). PKR rates: open.er-api.com (latest only), cached in `fx_rates`. `npm run seed-company` creates the partners and the Albaraka account on a fresh database.
+- Still to build: payroll, partner balances and profit sharing, assets register; payroll and partner payouts will also reduce the bank balance.
 
 ## Demo data (remove before go-live)
 

@@ -27,6 +27,7 @@ export default async function ClientOverviewPage(props: PageProps<"/clients/[id]
   const client = await getClientOr404(parseId((await props.params).id));
   const period = resolvePeriod(await props.searchParams, client.timezone);
   if (!isAdmin(user)) redirect(`/clients/${client.id}/orders?month=${period}`);
+  if (client.clientType !== "MARKETPLACE") redirect(`/clients/${client.id}/invoices`);
   const q = `?month=${period}`;
 
   const [terms, storeRows, expenseRows] = await Promise.all([

@@ -2,13 +2,15 @@ import "server-only";
 import { and, asc, desc, eq, gte, inArray, isNull, lt, lte, or, sql, notInArray } from "drizzle-orm";
 import {
   db,
-  businessSettings,
   clients,
   contractTerms,
+  invoiceLines,
+  invoices,
   ledgerLines,
   manualExpenses,
   orderCosts,
   orders,
+  payments,
   recurringExpenses,
   shippingProviders,
   statementAdjustments,
@@ -16,7 +18,8 @@ import {
   stores,
 } from "@/db";
 import { loadConverter } from "@/lib/fx";
-import { currentPeriod, localDate, monthRangeUtc, shiftPeriod } from "@/lib/period";
+import { createInvoice, getPkrRate, takeInvoiceNumber } from "@/lib/invoices/service";
+import { currentPeriod, localDate, monthRangeUtc, periodLabel, shiftPeriod } from "@/lib/period";
 import { computeStatement, type EngineExpense, type EngineInput, type StatementResult } from "./engine";
 
 type Client = typeof clients.$inferSelect;
@@ -237,16 +240,11 @@ export async function closeStatement(client: Client, term: Term, period: string,
   if (!view.canClose.ok) throw new Error(view.canClose.reason);
   const r = view.result;
 
+  const issueDate = new Date().toISOString().slice(0, 10);
+  const pkrRate = r.amountDue > 0 ? await getPkrRate(r.currency, issueDate) : null;
+
   return db.transaction(async (tx) => {
-    const [settings] = await tx.select().from(businessSettings).where(eq(businessSettings.id, 1)).for("update");
-    const prefix = settings?.invoicePrefix ?? "TM-";
-    const number = settings?.nextInvoiceNumber ?? 1;
-    const invoiceNumber = `${prefix}${String(number).padStart(4, "0")}`;
-    if (settings) {
-      await tx.update(businessSettings).set({ nextInvoiceNumber: number + 1 }).where(eq(businessSettings.id, 1));
-    } else {
-      await tx.insert(businessSettings).values({ id: 1, name: "Technomiles", nextInvoiceNumber: number + 1 });
-    }
+    const { number: invoiceNumber, paymentTermsDays } = await takeInvoiceNumber(tx);
     const [{ id }] = await tx
       .insert(statements)
       .values({
@@ -275,6 +273,24 @@ export async function closeStatement(client: Client, term: Term, period: string,
         })),
       );
     }
+    // The amount due becomes a company invoice (with PKR equivalent), unless nothing is due.
+    if (r.amountDue > 0) {
+      await createInvoice(
+        tx,
+        {
+          clientId: client.id,
+          issueDate,
+          currency: r.currency,
+          lines: [{ description: `${term.name}: ${term.rateBps / 100}% of ${term.baseLabel.toLowerCase()} for ${periodLabel(period)}`, amount: r.amountDue }],
+          pkrRate,
+          statementId: id,
+          period,
+          invoiceNumber,
+          createdBy: userId,
+        },
+        paymentTermsDays,
+      );
+    }
     const [row] = await tx.select().from(statements).where(eq(statements.id, id));
     return row;
   });
@@ -289,7 +305,16 @@ export async function reopenStatement(client: Client, term: Term, period: string
     .orderBy(desc(statements.period))
     .limit(1);
   if (!last || last.period !== period) throw new Error("Only the most recently closed month can be reopened.");
+  const [inv] = await db.select().from(invoices).where(eq(invoices.statementId, last.id));
+  if (inv) {
+    const [paid] = await db.select({ id: payments.id }).from(payments).where(eq(payments.invoiceId, inv.id)).limit(1);
+    if (paid) throw new Error(`Invoice ${inv.invoiceNumber} already has payments recorded. Remove them first.`);
+  }
   await db.transaction(async (tx) => {
+    if (inv) {
+      await tx.delete(invoiceLines).where(eq(invoiceLines.invoiceId, inv.id));
+      await tx.delete(invoices).where(eq(invoices.id, inv.id));
+    }
     await tx
       .delete(statementAdjustments)
       .where(

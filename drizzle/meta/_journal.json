@@ -15,6 +15,13 @@
       "when": 1790709360367,
       "tag": "0001_roles_and_client_types",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1790709728985,
+      "tag": "0002_company_invoices_expenses",
+      "breakpoints": true
     }
   ]
 }

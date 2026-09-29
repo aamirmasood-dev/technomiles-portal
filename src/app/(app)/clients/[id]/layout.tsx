@@ -22,7 +22,7 @@ export default async function ClientLayout(props: LayoutProps<"/clients/[id]">) 
         </p>
       </div>
       <Suspense>
-        <ClientTabs clientId={client.id} defaultPeriod={defaultPeriod} admin={isAdmin(user)} />
+        <ClientTabs clientId={client.id} defaultPeriod={defaultPeriod} admin={isAdmin(user)} marketplace={client.clientType === "MARKETPLACE"} />
       </Suspense>
       {props.children}
     </div>

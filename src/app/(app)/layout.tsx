@@ -21,6 +21,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
         <nav className="flex-1 space-y-1 px-2">
           {isAdmin(user) && <NavLink href="/">Dashboard</NavLink>}
           <ClientsNav clients={clientList} admin={isAdmin(user)} />
+          {isAdmin(user) && <NavLink href="/company">Company accounts</NavLink>}
           {isAdmin(user) && <NavLink href="/settings">Settings</NavLink>}
         </nav>
         <div className="border-t border-gray-200 px-4 py-4">

@@ -12,7 +12,8 @@
     "db:migrate": "drizzle-kit migrate",
     "create-user": "tsx scripts/create-user.ts",
     "seed-clients": "tsx scripts/seed-clients.ts",
-    "demo": "tsx scripts/demo-data.ts"
+    "demo": "tsx scripts/demo-data.ts",
+    "seed-company": "tsx scripts/seed-company.ts"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
