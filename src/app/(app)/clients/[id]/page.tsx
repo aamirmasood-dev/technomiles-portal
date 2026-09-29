@@ -144,7 +144,7 @@ export default async function ClientOverviewPage(props: PageProps<"/clients/[id]
                   <span>
                     {s.name} <span className="text-gray-500">· {PLATFORM_LABELS[s.platform]}</span>
                   </span>
-                  <SyncBadge status={s.lastSyncStatus} at={s.lastSyncAt} />
+                  <SyncBadge status={s.lastSyncStatus} at={s.lastSyncAt} connected={s.credentialsEnc != null} />
                 </li>
               ))}
           </ul>

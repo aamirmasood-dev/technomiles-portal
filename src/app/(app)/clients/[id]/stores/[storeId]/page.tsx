@@ -39,7 +39,7 @@ export default async function StorePage(props: PageProps<"/clients/[id]/stores/[
                 <p className="text-sm text-gray-700">
                   Connected to <span className="font-medium">{creds.shopDomain}</span> using{" "}
                   {"clientId" in creds ? `Client ID …${creds.clientId.slice(-4)}` : "an Admin API token"}. Last sync:{" "}
-                  <SyncBadge status={store.lastSyncStatus} at={store.lastSyncAt} />
+                  <SyncBadge status={store.lastSyncStatus} at={store.lastSyncAt} connected />
                 </p>
                 {store.lastSyncStatus === "ERROR" && <p className="text-sm text-red-600">{store.lastSyncMessage}</p>}
                 <div className="flex flex-wrap items-start gap-3">

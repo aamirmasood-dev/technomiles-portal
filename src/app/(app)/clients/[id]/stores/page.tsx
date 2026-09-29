@@ -49,7 +49,7 @@ export default async function StoresPage(props: PageProps<"/clients/[id]/stores"
                 <td>{s.currency}</td>
                 <td>{s.syncStartDate}</td>
                 <td>
-                  <SyncBadge status={s.lastSyncStatus} at={s.lastSyncAt} />
+                  <SyncBadge status={s.lastSyncStatus} at={s.lastSyncAt} connected={s.credentialsEnc != null} />
                 </td>
                 <td className="text-right">
                   <Link href={`/clients/${client.id}/stores/${s.id}`} className="link">

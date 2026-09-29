@@ -334,7 +334,9 @@ export default async function DashboardPage(props: PageProps<"/">) {
                 <td>{PLATFORM_LABELS[s.platform]}</td>
                 <td>{s.lastSyncAt ? s.lastSyncAt.toISOString().slice(0, 16).replace("T", " ") + " UTC" : "Never"}</td>
                 <td>
-                  {s.lastSyncStatus === "ERROR" ? (
+                  {!s.credentialsEnc ? (
+                    <Badge tone="amber">Not connected</Badge>
+                  ) : s.lastSyncStatus === "ERROR" ? (
                     <span title={s.lastSyncMessage ?? ""}>
                       <Badge tone="red">Error</Badge>
                     </span>
@@ -343,7 +345,7 @@ export default async function DashboardPage(props: PageProps<"/">) {
                   ) : s.lastSyncStatus === "RUNNING" ? (
                     <Badge>Running</Badge>
                   ) : (
-                    <Badge tone="amber">Not connected</Badge>
+                    <Badge>Connected · never synced</Badge>
                   )}
                 </td>
               </tr>

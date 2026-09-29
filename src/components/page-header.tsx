@@ -61,9 +61,10 @@ export function Badge({ tone = "gray", children }: { tone?: "gray" | "green" | "
   return <span className={`inline-flex rounded px-2 py-0.5 text-xs font-medium ${tones[tone]}`}>{children}</span>;
 }
 
-export function SyncBadge({ status, at }: { status: string | null; at: Date | null }) {
+export function SyncBadge({ status, at, connected }: { status: string | null; at: Date | null; connected: boolean }) {
+  if (!connected) return <Badge tone="amber">Not connected</Badge>;
   if (status === "ERROR") return <Badge tone="red">Error</Badge>;
   if (status === "RUNNING") return <Badge>Syncing…</Badge>;
   if (at) return <span className="text-sm">{at.toISOString().slice(0, 16).replace("T", " ")} UTC</span>;
-  return <Badge tone="amber">Not connected</Badge>;
+  return <Badge>Never synced</Badge>;
 }
