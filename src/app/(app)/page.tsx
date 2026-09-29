@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { asc, eq } from "drizzle-orm";
 import { db, clients, stores, PLATFORMS, type Platform } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { isAdmin, requireUser } from "@/lib/auth";
 import { formatMoney } from "@/lib/money";
 import { currentPeriod, isPeriod, localDate, periodLabel, shiftPeriod } from "@/lib/period";
 import { salesAnalysis } from "@/lib/sales";
@@ -52,7 +53,8 @@ function resolveRange(sp: Record<string, string | string[] | undefined>) {
 }
 
 export default async function DashboardPage(props: PageProps<"/">) {
-  await requireUser();
+  // The dashboard shows sales and statements, so staff start on the client list instead.
+  if (!isAdmin(await requireUser())) redirect("/clients");
   const sp = await props.searchParams;
   const period = typeof sp.month === "string" && isPeriod(sp.month) ? sp.month : shiftPeriod(currentPeriod("Europe/London"), -1);
   const { range, from, to } = resolveRange(sp);

@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { db, businessSettings } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { formatMoney } from "@/lib/money";
 import { isPeriod, periodLabel } from "@/lib/period";
 import { getClientOr404, getTermOr404, parseId } from "@/lib/queries";
@@ -11,7 +11,7 @@ import { StatementSummary, StoreTable } from "@/components/statement/breakdown";
 import { PrintButton } from "../../../../print-button";
 
 export default async function PrintStatementPage(props: PageProps<"/print/statement/[clientId]/[termId]/[period]">) {
-  await requireUser();
+  await requireAdmin();
   const p = await props.params;
   if (!isPeriod(p.period)) notFound();
   const client = await getClientOr404(parseId(p.clientId));

@@ -11,8 +11,7 @@ In scope:
 - Clients with configurable contract terms, added and edited from the UI.
 - Daily automatic sync, manual expense entry, product costs (COGS), month-end statements that can be locked and exported.
 
-Out of scope (a separate internal accounting system will be built later):
-- Staff salaries and commissions (e.g. Ehsaan's 1%), partner accounts, Technomiles' own P&L.
+In scope since Sep 2026 (owner's decision): an internal **Company** section in the same portal, see "Company accounts" below.
 
 ## Current clients
 
@@ -172,6 +171,30 @@ Left menu: **Dashboard**, **Clients** (dropdown listing every client, plus "All 
   - **Contract & setup**: client details, contract terms, recurring expenses, shipping providers
 - Transactions: browse ledger lines with filters for auditing (to be added with the connectors)
 - Settings: business details, logo, bank details, invoice numbering; users
+
+## Users and access
+
+- Roles: **ADMIN** (Aamir, Imran: everything) and **STAFF** (client-side work only). Enforced with `requireAdmin()` / `requireUser()` in every page and server action (`src/lib/auth.ts`); staff get 404 on admin pages.
+- Staff can: see the client list, a client's Orders (incl. Jawa order costs), Expenses (client expenses such as shipping/couriers, per store) and Stores (connect / edit accounts).
+- Staff cannot see: dashboard, client overview figures, profit sheets, statements, invoices, transactions, contract terms/setup, and anything in the Company section (salaries, P&L, invoices paid/unpaid, partners). Settings (business details, users) is admin only.
+- Users are managed in Settings → Users and access (add, role, active, reset password); `npm run create-user -- email "Name" [admin|staff]` still works.
+
+## Client types
+
+`MARKETPLACE` (ongoing store management, monthly profit sheet), `SERVICE` (web development / hosting / website management billed monthly or yearly), `PROJECT` (one-time work). Service and project clients are billed through invoices (below) rather than statements.
+
+## Company accounts (in progress)
+
+Decided with the owner (Sep 2026):
+- Company books in **PKR**; bank: **Albaraka Bank (PKR)**. Partners may also pay company expenses personally.
+- **Invoices** in the client's currency (GBP, USD, any future currency) that also show the **PKR equivalent** at the day's interbank rate (auto-fetched, editable per invoice). Sources: closed monthly statements (automatic), manual invoices for services/projects (hosting yearly renewals, one-time websites).
+- **Payments received**: installments per invoice, each with date, amount in invoice currency, **actual PKR credited** by the bank; exchange difference = actual PKR − invoice-rate PKR; status unpaid / partly paid / paid; "mark as fully received" even with a small remaining difference. Payments without an invoice (one-off project money) can also be recorded.
+- **Company expenses** (own left-menu item): date, category (rent, internet, utilities, subscriptions, hardware, other), details, amount, **paid by** Technomiles account / Aamir / Imran (a partner-paid expense is owed to that partner); fixed monthly expenses can repeat.
+- **Payroll** (paid between the 10th and 15th of the following month, in PKR): Nouman Nawaz PKR 70,000/month; Hassan Chohan PKR 15,000/month; **Ehsaan Latif: 1% of Net Sales** of Kensingtons Amazon + its 4 eBay accounts only (no salary). Net Sales per his contract = those stores' sales after all their expenses (platform fees, refunds, ads, labels, and manual expenses assigned to those stores, e.g. Parcelforce/EVRI entered per store); zero or negative month = no commission, **losses not carried forward**; paid in PKR at the rate the company actually received. Bonuses, deductions, advances, payslips.
+- **Partners**: monthly company profit split 50/50 into each partner's running balance; payments to partners, partner-paid expenses and opening balances (entered manually for Oct 2026) all post to it; carried forward every month; the statement says who owes whom (e.g. Imran took 55k more than his share → "Imran owes Aamir 55k", accumulating until cleared).
+- **Assets**: item, category, quantity, purchase date, price, condition, location/assigned to; add and remove (sold/disposed/lost with date and value).
+- Start: accounting month **October 2026**, opening balances entered manually.
+- Open question: profit recognised when money is **received** (recommended) or when invoiced.
 
 ## Demo data (remove before go-live)
 

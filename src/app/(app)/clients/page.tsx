@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { count, eq, asc } from "drizzle-orm";
 import { db, clients, stores } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { isAdmin, requireUser } from "@/lib/auth";
 import { Badge, PageHeader } from "@/components/page-header";
+import { CLIENT_TYPE_LABELS } from "@/lib/labels";
 
 export default async function ClientsPage() {
-  await requireUser();
+  const user = await requireUser();
   const rows = await db
     .select({
       id: clients.id,
       name: clients.name,
       currency: clients.currency,
+      clientType: clients.clientType,
       timezone: clients.timezone,
       active: clients.active,
       storeCount: count(stores.id),
@@ -25,9 +27,11 @@ export default async function ClientsPage() {
       <PageHeader
         title="Clients"
         actions={
-          <Link href="/clients/new" className="btn-primary">
-            Add client
-          </Link>
+          isAdmin(user) && (
+            <Link href="/clients/new" className="btn-primary">
+              Add client
+            </Link>
+          )
         }
       />
       <div className="rounded-lg border border-gray-200 bg-white">
@@ -35,6 +39,7 @@ export default async function ClientsPage() {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Type</th>
               <th>Currency</th>
               <th>Timezone</th>
               <th>Stores</th>
@@ -49,6 +54,7 @@ export default async function ClientsPage() {
                     {c.name}
                   </Link>
                 </td>
+                <td className="text-gray-600">{CLIENT_TYPE_LABELS[c.clientType].label}</td>
                 <td>{c.currency}</td>
                 <td>{c.timezone}</td>
                 <td>{c.storeCount}</td>
@@ -57,7 +63,7 @@ export default async function ClientsPage() {
             ))}
             {rows.length === 0 && (
               <tr>
-                <td colSpan={5} className="py-8 text-center text-gray-500">
+                <td colSpan={6} className="py-8 text-center text-gray-500">
                   No clients yet.
                 </td>
               </tr>

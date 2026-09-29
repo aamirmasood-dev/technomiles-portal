@@ -5,23 +5,24 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { periodLabel, shiftPeriod } from "@/lib/period";
 
 const TABS = [
-  { path: "", label: "Overview", monthly: true },
-  { path: "/orders", label: "Orders", monthly: true },
-  { path: "/expenses", label: "Expenses", monthly: true },
-  { path: "/statement", label: "Profit sheet", monthly: true },
-  { path: "/transactions", label: "Transactions", monthly: true },
-  { path: "/stores", label: "Stores", monthly: false },
-  { path: "/setup", label: "Contract & setup", monthly: false },
+  { path: "", label: "Overview", monthly: true, staff: false },
+  { path: "/orders", label: "Orders", monthly: true, staff: true },
+  { path: "/expenses", label: "Expenses", monthly: true, staff: true },
+  { path: "/statement", label: "Profit sheet", monthly: true, staff: false },
+  { path: "/transactions", label: "Transactions", monthly: true, staff: false },
+  { path: "/stores", label: "Stores", monthly: false, staff: true },
+  { path: "/setup", label: "Contract & setup", monthly: false, staff: false },
 ];
 
-export function ClientTabs({ clientId, defaultPeriod }: { clientId: number; defaultPeriod: string }) {
+export function ClientTabs({ clientId, defaultPeriod, admin }: { clientId: number; defaultPeriod: string; admin: boolean }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const base = `/clients/${clientId}`;
   const month = searchParams.get("month") ?? defaultPeriod;
   const rest = pathname.slice(base.length);
-  const active = TABS.filter((t) => (t.path === "" ? rest === "" : rest.startsWith(t.path))).at(-1) ?? null;
+  const tabs = TABS.filter((t) => admin || t.staff);
+  const active = tabs.filter((t) => (t.path === "" ? rest === "" : rest.startsWith(t.path))).at(-1) ?? null;
   const qs = searchParams.get("month") ? `?month=${month}` : "";
   const months = Array.from({ length: 18 }, (_, i) => shiftPeriod(defaultPeriod, 2 - i));
   if (!months.includes(month)) months.unshift(month);
@@ -29,7 +30,7 @@ export function ClientTabs({ clientId, defaultPeriod }: { clientId: number; defa
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b border-gray-200 print:hidden">
       <nav className="-mb-px flex flex-wrap gap-1">
-        {TABS.map((t) => (
+        {tabs.map((t) => (
           <Link
             key={t.path}
             href={`${base}${t.path}${t.monthly ? qs : ""}`}

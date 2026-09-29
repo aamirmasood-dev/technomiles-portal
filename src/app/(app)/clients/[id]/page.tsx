@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { and, asc, eq, gte, lt } from "drizzle-orm";
 import { db, manualExpenses, stores } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { isAdmin, requireUser } from "@/lib/auth";
 import { resolvePeriod } from "@/lib/filters";
 import { getClientOr404, parseId } from "@/lib/queries";
 import { formatMoney } from "@/lib/money";
@@ -22,9 +23,10 @@ function Stat({ label, value, sub, tone }: { label: string; value: string; sub?:
 }
 
 export default async function ClientOverviewPage(props: PageProps<"/clients/[id]">) {
-  await requireUser();
+  const user = await requireUser();
   const client = await getClientOr404(parseId((await props.params).id));
   const period = resolvePeriod(await props.searchParams, client.timezone);
+  if (!isAdmin(user)) redirect(`/clients/${client.id}/orders?month=${period}`);
   const q = `?month=${period}`;
 
   const [terms, storeRows, expenseRows] = await Promise.all([

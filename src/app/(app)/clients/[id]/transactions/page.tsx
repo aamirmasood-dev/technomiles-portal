@@ -1,6 +1,6 @@
 import { and, asc, eq, gte, inArray, lt } from "drizzle-orm";
 import { db, ledgerLines, orders, stores, CATEGORIES, type Category } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { resolvePeriod } from "@/lib/filters";
 import { getClientOr404, parseId } from "@/lib/queries";
 import { formatMoney } from "@/lib/money";
@@ -12,7 +12,7 @@ import { Card } from "@/components/page-header";
 const LIMIT = 1000;
 
 export default async function TransactionsPage(props: PageProps<"/clients/[id]/transactions">) {
-  await requireUser();
+  await requireAdmin();
   const client = await getClientOr404(parseId((await props.params).id));
   const sp = await props.searchParams;
   const period = resolvePeriod(sp, client.timezone);

@@ -11,10 +11,11 @@ import {
   shippingProviders,
   statements,
   stores,
+  CLIENT_TYPES,
   DEDUCTION_GROUPS,
   PLATFORMS,
 } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin, requireUser } from "@/lib/auth";
 import {
   checkbox,
   fieldErrors,
@@ -33,6 +34,7 @@ const currency = z.string().regex(/^[A-Z]{3}$/, "Pick a currency");
 
 const clientSchema = z.object({
   name: str().min(1, "Required"),
+  clientType: z.enum(CLIENT_TYPES),
   currency,
   timezone: str(64).min(1, "Required"),
   contactName: optStr(),
@@ -43,7 +45,7 @@ const clientSchema = z.object({
 });
 
 export async function saveClient(clientId: number | null, _prev: FormState, formData: FormData): Promise<FormState> {
-  await requireUser();
+  await requireAdmin();
   const parsed = clientSchema.safeParse(formObject(formData));
   if (!parsed.success) return fieldErrors(parsed.error);
 
@@ -90,7 +92,7 @@ export async function saveTerm(
   _prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
-  await requireUser();
+  await requireAdmin();
   const parsed = termSchema.safeParse(formObject(formData));
   if (!parsed.success) return fieldErrors(parsed.error);
   const { rate, ...rest } = parsed.data;
@@ -112,7 +114,7 @@ export async function saveTerm(
 }
 
 export async function deleteTerm(clientId: number, termId: number) {
-  await requireUser();
+  await requireAdmin();
   const [used] = await db.select({ id: statements.id }).from(statements).where(eq(statements.termId, termId)).limit(1);
   if (used) {
     // Closed invoices refer to this term; end it with "Effective to" instead.
@@ -170,7 +172,7 @@ export async function saveStore(
 // ---------- Shipping providers ----------
 
 export async function addShippingProvider(clientId: number, _prev: FormState, formData: FormData): Promise<FormState> {
-  await requireUser();
+  await requireAdmin();
   const name = String(formData.get("name") ?? "").trim();
   if (!name) return { error: "Enter a courier name." };
   await db.insert(shippingProviders).values({ clientId, name });
@@ -179,7 +181,7 @@ export async function addShippingProvider(clientId: number, _prev: FormState, fo
 }
 
 export async function toggleShippingProvider(clientId: number, providerId: number, active: boolean) {
-  await requireUser();
+  await requireAdmin();
   await db
     .update(shippingProviders)
     .set({ active })

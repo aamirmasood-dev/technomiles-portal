@@ -1,12 +1,12 @@
 import { eq } from "drizzle-orm";
 import { db, stores } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { getClientOr404, getTermOr404, parseId } from "@/lib/queries";
 import { PageHeader } from "@/components/page-header";
 import { TermForm } from "../term-form";
 
 export default async function EditTermPage(props: PageProps<"/clients/[id]/terms/[termId]">) {
-  await requireUser();
+  await requireAdmin();
   const params = await props.params;
   const client = await getClientOr404(parseId(params.id));
   const term = await getTermOr404(client.id, parseId(params.termId));

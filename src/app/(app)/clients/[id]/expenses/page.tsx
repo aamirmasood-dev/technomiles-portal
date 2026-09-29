@@ -45,6 +45,27 @@ export default async function ExpensesPage(props: PageProps<"/clients/[id]/expen
       return { name: p.name, totals: [...byCur.entries()] };
     });
 
+  // Store × (courier or expense type) totals, per currency.
+  const columnOf = (r: (typeof rows)[number]) => (r.shippingProviderId ? (providerName.get(r.shippingProviderId) ?? "Courier") : DEDUCTION_GROUP_LABELS[r.group]);
+  const columns = [...new Set(rows.map(columnOf))];
+  const addTo = (m: Map<string, number>, cur: string, n: number) => m.set(cur, (m.get(cur) ?? 0) + n);
+  const storeKeys = [...new Set(rows.map((r) => r.storeId))].sort((a, b) => (a == null ? 1 : b == null ? -1 : (storeName.get(a) ?? "").localeCompare(storeName.get(b) ?? "")));
+  const byStore = {
+    columns,
+    rows: storeKeys.map((sid) => {
+      const mine = rows.filter((r) => r.storeId === sid);
+      const cells: Record<string, [string, number][]> = {};
+      for (const c of columns) {
+        const m = new Map<string, number>();
+        for (const r of mine.filter((r) => columnOf(r) === c)) addTo(m, r.currency, r.amount);
+        if (m.size) cells[c] = [...m.entries()];
+      }
+      const t = new Map<string, number>();
+      for (const r of mine) addTo(t, r.currency, r.amount);
+      return { label: sid ? (storeName.get(sid) ?? "Store") : "All stores (shared)", cells, total: [...t.entries()] };
+    }),
+  };
+
   return (
     <div className="space-y-6">
 
@@ -59,6 +80,37 @@ export default async function ExpensesPage(props: PageProps<"/clients/[id]/expen
             </div>
           ))}
         </div>
+      )}
+
+      {rows.length > 0 && (
+        <Card title="By store">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Store</th>
+                {byStore.columns.map((c) => (
+                  <th key={c} className="text-right">
+                    {c}
+                  </th>
+                ))}
+                <th className="text-right">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {byStore.rows.map((r) => (
+                <tr key={r.label}>
+                  <td>{r.label}</td>
+                  {byStore.columns.map((c) => (
+                    <td key={c} className="text-right tabular-nums">
+                      {r.cells[c] ? r.cells[c].map(([cur, n]) => formatMoney(n, cur)).join(" + ") : "—"}
+                    </td>
+                  ))}
+                  <td className="text-right font-medium tabular-nums">{r.total.map(([cur, n]) => formatMoney(n, cur)).join(" + ")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Card>
       )}
 
       <Card title={`Expenses in ${periodLabel(period)}`}>

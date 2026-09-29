@@ -58,18 +58,29 @@ export const DEDUCTION_GROUPS = [
 ] as const;
 export type DeductionGroup = (typeof DEDUCTION_GROUPS)[number];
 
+export const ROLES = ["ADMIN", "STAFF"] as const;
+export type Role = (typeof ROLES)[number];
+
 export const users = mysqlTable("users", {
   id: serial("id").primaryKey(),
   email: varchar("email", { length: 191 }).notNull().unique(),
   name: varchar("name", { length: 191 }).notNull(),
   passwordHash: varchar("password_hash", { length: 100 }).notNull(),
+  // ADMIN: everything. STAFF: client-side work only (orders, costs, client expenses, stores); see src/lib/auth.ts.
+  role: mysqlEnum("role", ROLES).notNull().default("STAFF"),
+  active: boolean("active").notNull().default(true),
   lastLoginAt: datetime("last_login_at"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+export const CLIENT_TYPES = ["MARKETPLACE", "SERVICE", "PROJECT"] as const;
+export type ClientType = (typeof CLIENT_TYPES)[number];
+
 export const clients = mysqlTable("clients", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 191 }).notNull(),
+  // MARKETPLACE: ongoing store management with monthly statements; SERVICE: recurring web/hosting services; PROJECT: one-time work.
+  clientType: mysqlEnum("client_type", CLIENT_TYPES).notNull().default("MARKETPLACE"),
   // Currency the statement and invoice are in; foreign sales are converted into it.
   currency: char("currency", { length: 3 }).notNull(),
   timezone: varchar("timezone", { length: 64 }).notNull(),

@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, isAdmin } from "@/lib/auth";
 import { fromMinor } from "@/lib/money";
 import { isPeriod } from "@/lib/period";
 import { getClientOr404, getTermOr404, parseId } from "@/lib/queries";
@@ -12,7 +12,7 @@ function csvCell(v: string | number) {
 }
 
 export async function GET(_req: Request, ctx: RouteContext<"/api/statements/[clientId]/[termId]/[period]/csv">) {
-  if (!(await getCurrentUser())) return new Response("Unauthorized", { status: 401 });
+  if (!isAdmin(await getCurrentUser())) return new Response("Not found", { status: 404 });
   const p = await ctx.params;
   if (!isPeriod(p.period)) return new Response("Bad period", { status: 400 });
   const client = await getClientOr404(parseId(p.clientId));

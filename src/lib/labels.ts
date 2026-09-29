@@ -1,4 +1,4 @@
-import type { Category, DeductionGroup, Platform } from "@/db/schema";
+import type { Category, ClientType, DeductionGroup, Platform } from "@/db/schema";
 
 export const PLATFORM_LABELS: Record<Platform, string> = {
   SHOPIFY: "Shopify",
@@ -77,3 +77,9 @@ export const AMAZON_MARKETPLACES = [
   { value: "A1RKKUPIHCS9HS", label: "Amazon.es" },
   { value: "A2EUQ1WTGCTBG2", label: "Amazon.ca" },
 ];
+
+export const CLIENT_TYPE_LABELS: Record<ClientType, { label: string; hint: string }> = {
+  MARKETPLACE: { label: "Marketplace management (ongoing)", hint: "We run their Shopify / eBay / Amazon stores; monthly profit sheet and invoice." },
+  SERVICE: { label: "Services (recurring)", hint: "Web development, hosting and website management billed monthly or yearly." },
+  PROJECT: { label: "One-time project", hint: "A single job such as a static website, invoiced once." },
+};

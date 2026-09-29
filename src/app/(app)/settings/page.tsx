@@ -1,15 +1,17 @@
 import { asc, eq } from "drizzle-orm";
 import { db, businessSettings, users } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { ActionForm, Field } from "@/components/action-form";
 import { Card, PageHeader } from "@/components/page-header";
 import { saveBusinessSettings } from "./actions";
+import { addUser, resetUserPassword, setUserAccess } from "./user-actions";
+import { AccessForm, PasswordForm } from "./user-row-forms";
 
 export default async function SettingsPage() {
-  await requireUser();
+  await requireAdmin();
   const [[s], userRows] = await Promise.all([
     db.select().from(businessSettings).where(eq(businessSettings.id, 1)),
-    db.select({ name: users.name, email: users.email, lastLoginAt: users.lastLoginAt }).from(users).orderBy(asc(users.name)),
+    db.select().from(users).orderBy(asc(users.name)),
   ]);
 
   return (
@@ -69,28 +71,59 @@ export default async function SettingsPage() {
         </ActionForm>
       </Card>
 
-      <Card title="Users">
+      <Card title="Users and access">
+        <p className="mb-3 text-sm text-gray-600">
+          <strong>Administrators</strong> see everything. <strong>Staff</strong> can only work on the client side: view clients, orders and connected
+          stores, enter order costs and client expenses (shipping, couriers), and connect or edit stores. They cannot see profit sheets, statements,
+          transactions, the dashboard, company accounts, payroll, partners or settings.
+        </p>
         <table className="table">
           <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <th>Last sign-in</th>
+              <th>Last sign-in (UTC)</th>
+              <th>Access</th>
+              <th>Reset password</th>
             </tr>
           </thead>
           <tbody>
             {userRows.map((u) => (
-              <tr key={u.email}>
+              <tr key={u.id} className={u.active ? "" : "text-gray-400"}>
                 <td>{u.name}</td>
                 <td>{u.email}</td>
-                <td>{u.lastLoginAt ? u.lastLoginAt.toISOString().slice(0, 16).replace("T", " ") + " UTC" : "Never"}</td>
+                <td className="whitespace-nowrap">{u.lastLoginAt ? u.lastLoginAt.toISOString().slice(0, 16).replace("T", " ") : "Never"}</td>
+                <td>
+                  <AccessForm action={setUserAccess.bind(null, u.id)} role={u.role} active={u.active} />
+                </td>
+                <td>
+                  <PasswordForm action={resetUserPassword.bind(null, u.id)} />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <p className="mt-3 text-xs text-gray-500">
-          Add a user or reset a password from the terminal: <code>npm run create-user -- email@example.com &quot;Name&quot;</code>
-        </p>
+
+        <h3 className="mt-6 mb-3 text-sm font-semibold">Add a user</h3>
+        <ActionForm action={addUser} submitLabel="Add user">
+          <div className="grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+            <Field label="Name" name="newName">
+              <input id="newName" name="newName" className="input" required />
+            </Field>
+            <Field label="Email" name="newEmail">
+              <input id="newEmail" name="newEmail" type="email" className="input" required />
+            </Field>
+            <Field label="Role" name="newRole">
+              <select id="newRole" name="newRole" className="input" defaultValue="STAFF">
+                <option value="STAFF">Staff</option>
+                <option value="ADMIN">Administrator</option>
+              </select>
+            </Field>
+            <Field label="Password" name="newPassword" hint="At least 10 characters. Share it with the person securely.">
+              <input id="newPassword" name="newPassword" type="password" autoComplete="new-password" className="input" required />
+            </Field>
+          </div>
+        </ActionForm>
       </Card>
     </div>
   );

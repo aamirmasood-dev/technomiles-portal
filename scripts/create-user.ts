@@ -1,4 +1,4 @@
-// Usage: npm run create-user -- <email> "<name>"   (prompts for the password)
+// Usage: npm run create-user -- <email> "<name>" [admin|staff]   (prompts for the password; default admin)
 // Running it again for an existing email resets that user's password.
 import { config } from "dotenv";
 import { createInterface } from "node:readline/promises";
@@ -22,7 +22,8 @@ async function readPassword(prompt: string): Promise<string> {
 }
 
 async function main() {
-  const [email, name] = process.argv.slice(2);
+  const [email, name, roleArg = "admin"] = process.argv.slice(2);
+  const role = roleArg.toLowerCase() === "staff" ? "STAFF" : "ADMIN";
   if (!email || !name) {
     console.error('Usage: npm run create-user -- <email> "<name>"');
     process.exit(1);
@@ -35,12 +36,12 @@ async function main() {
   const hash = await bcrypt.hash(password, 12);
   const conn = await mysql.createConnection(process.env.DATABASE_URL!);
   await conn.execute(
-    `INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?)
-     ON DUPLICATE KEY UPDATE name = VALUES(name), password_hash = VALUES(password_hash)`,
-    [email.trim().toLowerCase(), name, hash],
+    `INSERT INTO users (email, name, password_hash, role, active) VALUES (?, ?, ?, ?, 1)
+     ON DUPLICATE KEY UPDATE name = VALUES(name), password_hash = VALUES(password_hash), role = VALUES(role), active = 1`,
+    [email.trim().toLowerCase(), name, hash, role],
   );
   await conn.end();
-  console.log(`User ${email} saved.`);
+  console.log(`User ${email} saved as ${role}.`);
 }
 
 main().catch((e) => {

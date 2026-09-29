@@ -17,7 +17,7 @@ export function NavLink({ href, children }: { href: string; children: React.Reac
   );
 }
 
-export function ClientsNav({ clients }: { clients: { id: number; name: string; active: boolean }[] }) {
+export function ClientsNav({ clients, admin }: { clients: { id: number; name: string; active: boolean }[]; admin: boolean }) {
   const pathname = usePathname();
   const inClients = pathname.startsWith("/clients");
   const [open, setOpen] = useState(true);
@@ -49,9 +49,11 @@ export function ClientsNav({ clients }: { clients: { id: number; name: string; a
           <Link href="/clients" className={`block rounded-md px-3 py-1.5 text-sm ${pathname === "/clients" ? "text-indigo-700" : "text-gray-500 hover:bg-gray-100"}`}>
             All clients
           </Link>
-          <Link href="/clients/new" className="block rounded-md px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100">
-            + Add client
-          </Link>
+          {admin && (
+            <Link href="/clients/new" className="block rounded-md px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100">
+              + Add client
+            </Link>
+          )}
         </div>
       )}
     </div>

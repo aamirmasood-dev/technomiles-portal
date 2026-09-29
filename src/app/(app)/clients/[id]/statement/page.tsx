@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { resolvePeriod } from "@/lib/filters";
 import { getClientOr404, parseId } from "@/lib/queries";
 import { formatMoney } from "@/lib/money";
@@ -11,7 +11,7 @@ import { closeMonth, reopenMonth } from "./actions";
 import { ConfirmAction } from "./confirm-action";
 
 export default async function StatementPage(props: PageProps<"/clients/[id]/statement">) {
-  await requireUser();
+  await requireAdmin();
   const client = await getClientOr404(parseId((await props.params).id));
   const period = resolvePeriod(await props.searchParams, client.timezone);
   const terms = await termsForPeriod(client.id, period);

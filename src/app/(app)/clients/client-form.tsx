@@ -1,5 +1,6 @@
 import { ActionForm, Field } from "@/components/action-form";
-import { CURRENCIES, TIMEZONES } from "@/lib/labels";
+import { CLIENT_TYPE_LABELS, CURRENCIES, TIMEZONES } from "@/lib/labels";
+import { CLIENT_TYPES } from "@/db/schema";
 import type { clients } from "@/db/schema";
 import { saveClient } from "./actions";
 
@@ -11,6 +12,19 @@ export function ClientForm({ client }: { client?: Client }) {
       <div className="grid max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label="Client name" name="name">
           <input id="name" name="name" className="input" defaultValue={client?.name} required />
+        </Field>
+        <Field label="Client type" name="clientType">
+          <div className="space-y-2">
+            {CLIENT_TYPES.map((t) => (
+              <label key={t} className="flex items-start gap-2 text-sm">
+                <input type="radio" name="clientType" value={t} defaultChecked={(client?.clientType ?? "MARKETPLACE") === t} className="mt-0.5" />
+                <span>
+                  {CLIENT_TYPE_LABELS[t].label}
+                  <span className="block text-xs text-gray-500">{CLIENT_TYPE_LABELS[t].hint}</span>
+                </span>
+              </label>
+            ))}
+          </div>
         </Field>
         <Field label="Contact person" name="contactName">
           <input id="contactName" name="contactName" className="input" defaultValue={client?.contactName ?? ""} />

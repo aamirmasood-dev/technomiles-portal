@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db, businessSettings } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { fieldErrors, formObject, optStr, str, type FormState } from "@/lib/form";
 
 const LOGO_TYPES = ["image/png", "image/jpeg", "image/webp", "image/svg+xml"];
@@ -23,7 +23,7 @@ const schema = z.object({
 });
 
 export async function saveBusinessSettings(_prev: FormState, formData: FormData): Promise<FormState> {
-  await requireUser();
+  await requireAdmin();
   const { removeLogo, ...fields } = formObject(formData);
   const parsed = schema.safeParse(fields);
   if (!parsed.success) return fieldErrors(parsed.error);

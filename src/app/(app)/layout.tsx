@@ -1,4 +1,4 @@
-import { requireUser } from "@/lib/auth";
+import { isAdmin, requireUser } from "@/lib/auth";
 import { logout } from "@/app/login/actions";
 import { asc } from "drizzle-orm";
 import { db, clients } from "@/db";
@@ -19,13 +19,15 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <p className="text-xs text-gray-500">Accounts Hub</p>
         </div>
         <nav className="flex-1 space-y-1 px-2">
-          <NavLink href="/">Dashboard</NavLink>
-          <ClientsNav clients={clientList} />
-          <NavLink href="/settings">Settings</NavLink>
+          {isAdmin(user) && <NavLink href="/">Dashboard</NavLink>}
+          <ClientsNav clients={clientList} admin={isAdmin(user)} />
+          {isAdmin(user) && <NavLink href="/settings">Settings</NavLink>}
         </nav>
         <div className="border-t border-gray-200 px-4 py-4">
           <p className="truncate text-sm font-medium">{user.name}</p>
-          <p className="truncate text-xs text-gray-500">{user.email}</p>
+          <p className="truncate text-xs text-gray-500">
+            {user.email} · {isAdmin(user) ? "Administrator" : "Staff"}
+          </p>
           <form action={logout} className="mt-3">
             <button type="submit" className="text-sm text-gray-600 hover:text-gray-900">
               Sign out

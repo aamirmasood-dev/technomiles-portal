@@ -50,7 +50,7 @@ export function ExpenseFields({
           ))}
         </select>
       </Field>
-      <Field label="Store" name="storeId" hint="Optional. Leave empty for a client-wide cost.">
+      <Field label="Store" name="storeId" hint="Pick the store this cost belongs to (e.g. Parcelforce labels for one eBay account) for exact per-store reporting. Leave as All stores for a shared cost.">
         <select id="storeId" name="storeId" className="input" defaultValue={defaults.storeId ?? ""}>
           <option value="">All stores</option>
           {stores.map((s) => (

@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { getClientOr404, getTermOr404 } from "@/lib/queries";
 import { isPeriod } from "@/lib/period";
 import { closeStatement, reopenStatement } from "@/lib/statement/load";
@@ -9,7 +9,7 @@ import { closeStatement, reopenStatement } from "@/lib/statement/load";
 export type CloseState = { error?: string };
 
 export async function closeMonth(clientId: number, termId: number, period: string, _prev: CloseState): Promise<CloseState> {
-  const user = await requireUser();
+  const user = await requireAdmin();
   if (!isPeriod(period)) return { error: "Invalid month." };
   const client = await getClientOr404(clientId);
   const term = await getTermOr404(clientId, termId);
@@ -24,7 +24,7 @@ export async function closeMonth(clientId: number, termId: number, period: strin
 }
 
 export async function reopenMonth(clientId: number, termId: number, period: string, _prev: CloseState): Promise<CloseState> {
-  await requireUser();
+  await requireAdmin();
   const client = await getClientOr404(clientId);
   const term = await getTermOr404(clientId, termId);
   try {

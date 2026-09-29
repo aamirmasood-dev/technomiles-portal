@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import { requireUser } from "@/lib/auth";
+import { isAdmin, requireUser } from "@/lib/auth";
 import { getClientOr404, parseId } from "@/lib/queries";
 import { currentPeriod, shiftPeriod } from "@/lib/period";
 import { ClientTabs } from "@/components/client-tabs";
 import { Badge } from "@/components/page-header";
 
 export default async function ClientLayout(props: LayoutProps<"/clients/[id]">) {
-  await requireUser();
+  const user = await requireUser();
   const client = await getClientOr404(parseId((await props.params).id));
   const defaultPeriod = shiftPeriod(currentPeriod(client.timezone), -1);
 
@@ -22,7 +22,7 @@ export default async function ClientLayout(props: LayoutProps<"/clients/[id]">) 
         </p>
       </div>
       <Suspense>
-        <ClientTabs clientId={client.id} defaultPeriod={defaultPeriod} />
+        <ClientTabs clientId={client.id} defaultPeriod={defaultPeriod} admin={isAdmin(user)} />
       </Suspense>
       {props.children}
     </div>

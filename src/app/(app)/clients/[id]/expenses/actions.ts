@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { db, manualExpenses, recurringExpenses, shippingProviders, stores, DEDUCTION_GROUPS } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin, requireUser } from "@/lib/auth";
 import { fieldErrors, formObject, moneyInput, month, optMonth, optStr, type FormState } from "@/lib/form";
 
 const optId = z
@@ -84,7 +84,7 @@ const recurringSchema = z.object({
 });
 
 export async function addRecurringExpense(clientId: number, _prev: FormState, formData: FormData): Promise<FormState> {
-  await requireUser();
+  await requireAdmin();
   const parsed = recurringSchema.safeParse(formObject(formData));
   if (!parsed.success) return fieldErrors(parsed.error);
   await checkOwnership(clientId, parsed.data.storeId, null);
@@ -94,7 +94,7 @@ export async function addRecurringExpense(clientId: number, _prev: FormState, fo
 }
 
 export async function endRecurringExpense(clientId: number, id: number, endMonth: string) {
-  await requireUser();
+  await requireAdmin();
   await db
     .update(recurringExpenses)
     .set({ endMonth })
@@ -103,7 +103,7 @@ export async function endRecurringExpense(clientId: number, id: number, endMonth
 }
 
 export async function deleteRecurringExpense(clientId: number, id: number) {
-  await requireUser();
+  await requireAdmin();
   await db.delete(recurringExpenses).where(and(eq(recurringExpenses.id, id), eq(recurringExpenses.clientId, clientId)));
   revalidatePath(`/clients/${clientId}`, "layout");
 }

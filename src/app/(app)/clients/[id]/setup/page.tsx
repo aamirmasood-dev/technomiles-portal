@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { asc, eq } from "drizzle-orm";
 import { db, contractTerms, recurringExpenses, shippingProviders, stores, DEDUCTION_GROUPS } from "@/db";
-import { requireUser } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { getClientOr404, parseId } from "@/lib/queries";
 import { formatMoney } from "@/lib/money";
 import { CURRENCIES, DEDUCTION_GROUP_LABELS } from "@/lib/labels";
@@ -14,7 +14,7 @@ import { ActionForm } from "@/components/action-form";
 import { addShippingProvider, toggleShippingProvider } from "../../actions";
 
 export default async function SetupPage(props: PageProps<"/clients/[id]/setup">) {
-  await requireUser();
+  await requireAdmin();
   const client = await getClientOr404(parseId((await props.params).id));
   const [terms, storeRows, providers, recurring] = await Promise.all([
     db.select().from(contractTerms).where(eq(contractTerms.clientId, client.id)).orderBy(asc(contractTerms.effectiveFrom)),
