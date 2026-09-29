@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    serverActions: {
+      // Logo and CSV uploads
+      bodySizeLimit: "2mb",
+    },
+  },
 };
 
 export default nextConfig;

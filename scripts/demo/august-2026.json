@@ -1,0 +1,2180 @@
+{
+ "period": "2026-08",
+ "stores": [
+  {
+   "store": "Kensingtons Bedding eBay",
+   "orders": [
+    {
+     "ext": "15-14963-64922",
+     "number": "15-14963-64922",
+     "date": "2026-08-01",
+     "currency": "GBP",
+     "total": 6300,
+     "items": [
+      {
+       "sku": "296930529353",
+       "title": "Luxurious Bamboo Blended Pillow Hypoallergenic Breathable Fabric for Allergy",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6300,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1352,
+       "desc": "eBay selling fees"
+      }
+     ]
+    },
+    {
+     "ext": "20-14963-07210",
+     "number": "20-14963-07210",
+     "date": "2026-08-03",
+     "currency": "GBP",
+     "total": 9180,
+     "items": [
+      {
+       "sku": "296443913927",
+       "title": "Certified Hungarian Goose Feather & Down Duvet 500TC Cotton Cover for All Season",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 9180,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1947,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -551,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "13-14977-92101",
+     "number": "13-14977-92101",
+     "date": "2026-08-03",
+     "currency": "GBP",
+     "total": 16650,
+     "items": [
+      {
+       "sku": "298490215061",
+       "title": "Kensingtons Siberian Goose Feather & Down Duvet 500TCCotton Cover Multiple Sizes",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 16650,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -3495,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -1998,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "18-14971-52638",
+     "number": "18-14971-52638",
+     "date": "2026-08-04",
+     "currency": "GBP",
+     "total": 14850,
+     "items": [
+      {
+       "sku": "296439831590",
+       "title": "Premium Quality 100% Mulberry Silk Filled Duvet Available In All Size Bed & Togs",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 14850,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -3122,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -892,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "09-14998-61593",
+     "number": "09-14998-61593",
+     "date": "2026-08-06",
+     "currency": "GBP",
+     "total": 23850,
+     "items": [
+      {
+       "sku": "296750897580",
+       "title": "Premium Hungarian Goose Down Certified Duvet All-Season Comfort & Warmth",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 23850,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -4985,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -1432,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "05-15016-48039",
+     "number": "05-15016-48039",
+     "date": "2026-08-09",
+     "currency": "GBP",
+     "total": 10800,
+     "items": [
+      {
+       "sku": "298490158638",
+       "title": "Kensingtons Hungarian Goose Feather & Down Duvet Cotton Cover Multiple Sizes",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 10800,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -2284,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -2592,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "02-15031-71289",
+     "number": "02-15031-71289",
+     "date": "2026-08-11",
+     "currency": "GBP",
+     "total": 8415,
+     "items": [
+      {
+       "sku": "296768102660",
+       "title": "Luxurious Siberian Goose Down Pillow Certified Hypoallergenic & 750+ Fill Power",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 8415,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -48,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "SHIPPING_LABELS",
+       "amount": -306,
+       "desc": "Postage labels"
+      },
+      {
+       "cat": "REFUNDS",
+       "amount": -8415,
+       "desc": "Refund"
+      }
+     ]
+    },
+    {
+     "ext": "02-15031-71290",
+     "number": "02-15031-71290",
+     "date": "2026-08-11",
+     "currency": "GBP",
+     "total": 9360,
+     "items": [
+      {
+       "sku": "296598441009",
+       "title": "Premium Quality 500TC 100% Canadian Goose Down Hypoallergenic Super Soft Pillow",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 9360,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -48,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "SHIPPING_LABELS",
+       "amount": -306,
+       "desc": "Postage labels"
+      },
+      {
+       "cat": "REFUNDS",
+       "amount": -9360,
+       "desc": "Refund"
+      }
+     ]
+    },
+    {
+     "ext": "14-15035-98125",
+     "number": "14-15035-98125",
+     "date": "2026-08-17",
+     "currency": "GBP",
+     "total": 25650,
+     "items": [
+      {
+       "sku": "296741046314",
+       "title": "Supreme Quality Hungarian Goose Down Duvet All Size Bed & Togs Ultra Soft & Warm",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 25650,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -5358,
+       "desc": "eBay selling fees"
+      }
+     ]
+    },
+    {
+     "ext": "19-15049-32256",
+     "number": "19-15049-32256",
+     "date": "2026-08-22",
+     "currency": "GBP",
+     "total": 3600,
+     "items": [
+      {
+       "sku": "296768159792",
+       "title": "Ultimate Bamboo Fibre Filled Pillow Hypoallergenic Cooling & Soft Support",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 3600,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -794,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -216,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "08-15074-07910",
+     "number": "08-15074-07910",
+     "date": "2026-08-23",
+     "currency": "GBP",
+     "total": 6300,
+     "items": [
+      {
+       "sku": "298087910198",
+       "title": "Kensingtons Hungarian Goose Feather Down 10.5 Tog Hotel Quality Duvet 500T/C",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6300,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1352,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -378,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "12-15070-87875",
+     "number": "12-15070-87875",
+     "date": "2026-08-24",
+     "currency": "GBP",
+     "total": 6080,
+     "items": [
+      {
+       "sku": "298490158638",
+       "title": "Kensingtons Hungarian Goose Feather & Down Duvet Cotton Cover Multiple Sizes",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6080,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1307,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -1459,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "23-15054-71309",
+     "number": "23-15054-71309",
+     "date": "2026-08-25",
+     "currency": "GBP",
+     "total": 8640,
+     "items": [
+      {
+       "sku": "297258376535",
+       "title": "Premium Merino Wool Pillow Soft & Supportive Hypoallergenic & Breathable",
+       "qty": 2
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 8640,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1836,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -518,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "22-15057-43398",
+     "number": "22-15057-43398",
+     "date": "2026-08-25",
+     "currency": "GBP",
+     "total": 4000,
+     "items": [
+      {
+       "sku": "296768159792",
+       "title": "Ultimate Bamboo Fibre Filled Pillow Hypoallergenic Cooling & Soft Support",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 4000,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -876,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -240,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "05-15092-89239",
+     "number": "05-15092-89239",
+     "date": "2026-08-26",
+     "currency": "GBP",
+     "total": 7000,
+     "items": [
+      {
+       "sku": "298087910198",
+       "title": "Kensingtons Hungarian Goose Feather Down 10.5 Tog Hotel Quality Duvet 500T/C",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 7000,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1498,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -420,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "18-15076-77696",
+     "number": "18-15076-77696",
+     "date": "2026-08-28",
+     "currency": "GBP",
+     "total": 14000,
+     "items": [
+      {
+       "sku": "296443913927",
+       "title": "Certified Hungarian Goose Feather & Down Duvet 500TC Cotton Cover for All Season",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 14000,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -2946,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -840,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "08-15096-49378",
+     "number": "08-15096-49378",
+     "date": "2026-08-28",
+     "currency": "GBP",
+     "total": 3840,
+     "items": [
+      {
+       "sku": "298128960599",
+       "title": "Kensingtons 100% Microfibre Feels Like Down Duvet - 10.5 Tog - Multiple Sizes",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 3840,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -842,
+       "desc": "eBay selling fees"
+      }
+     ]
+    },
+    {
+     "ext": "18-15090-32572",
+     "number": "18-15090-32572",
+     "date": "2026-08-31",
+     "currency": "GBP",
+     "total": 9000,
+     "items": [
+      {
+       "sku": "296443913927",
+       "title": "Certified Hungarian Goose Feather & Down Duvet 500TC Cotton Cover for All Season",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 9000,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -1911,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -540,
+       "desc": "Promoted Listings"
+      }
+     ]
+    }
+   ],
+   "lines": []
+  },
+  {
+   "store": "Online Bedding 4U eBay",
+   "orders": [
+    {
+     "ext": "15-14983-16028",
+     "number": "15-14983-16028",
+     "date": "2026-08-05",
+     "currency": "GBP",
+     "total": 1424,
+     "items": [
+      {
+       "sku": "167071507160",
+       "title": "Pack of 2 Rectangle Waffle Soft Filled Cushion Homemade Sofa Bed Home Decore",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1424,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -257,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -85,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "15-14983-16029",
+     "number": "15-14983-16029",
+     "date": "2026-08-05",
+     "currency": "GBP",
+     "total": 1424,
+     "items": [
+      {
+       "sku": "167071507160",
+       "title": "Pack of 2 Rectangle Waffle Soft Filled Cushion Homemade Sofa Bed Home Decore",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1424,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -257,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -85,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "25-14981-32942",
+     "number": "25-14981-32942",
+     "date": "2026-08-09",
+     "currency": "GBP",
+     "total": 58700,
+     "items": [
+      {
+       "sku": null,
+       "title": "Multi-item",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 58700,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -8679,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -7044,
+       "desc": "Promoted Listings"
+      }
+     ]
+    }
+   ],
+   "lines": []
+  },
+  {
+   "store": "Raymat Home eBay",
+   "orders": [
+    {
+     "ext": "07-14988-41567",
+     "number": "07-14988-41567",
+     "date": "2026-08-03",
+     "currency": "GBP",
+     "total": 1169,
+     "items": [
+      {
+       "sku": "326373521076",
+       "title": "4-Pack Hotel Quality Pillows Side Sleeper Bounce Back Bed Pillow Quick Rebound",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1169,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -220,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -56,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "18-14971-99495",
+     "number": "18-14971-99495",
+     "date": "2026-08-04",
+     "currency": "GBP",
+     "total": 2200,
+     "items": [
+      {
+       "sku": "326996663837",
+       "title": "Raymat™ Certified 400TC 100% Pure Organic Cotton Percale Duvet Cover Sets",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 2200,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -372,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -106,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "26-14998-81151",
+     "number": "26-14998-81151",
+     "date": "2026-08-13",
+     "currency": "GBP",
+     "total": 1169,
+     "items": [
+      {
+       "sku": "326373521076",
+       "title": "4-Pack Hotel Quality Pillows Side Sleeper Bounce Back Bed Pillow Quick Rebound",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1169,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -220,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -56,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "15-15037-12395",
+     "number": "15-15037-12395",
+     "date": "2026-08-18",
+     "currency": "GBP",
+     "total": 1169,
+     "items": [
+      {
+       "sku": "326373521076",
+       "title": "4-Pack Hotel Quality Pillows Side Sleeper Bounce Back Bed Pillow Quick Rebound",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1169,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -220,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -56,
+       "desc": "Promoted Listings"
+      }
+     ]
+    },
+    {
+     "ext": "07-15075-99500",
+     "number": "07-15075-99500",
+     "date": "2026-08-23",
+     "currency": "GBP",
+     "total": 1980,
+     "items": [
+      {
+       "sku": "326996663837",
+       "title": "Raymat™ Certified 400TC 100% Pure Organic Cotton Percale Duvet Cover Sets",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1980,
+       "desc": "Sale (after discount)"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -339,
+       "desc": "eBay selling fees"
+      },
+      {
+       "cat": "ADVERTISING",
+       "amount": -95,
+       "desc": "Promoted Listings"
+      }
+     ]
+    }
+   ],
+   "lines": []
+  },
+  {
+   "store": "Kensingtons Bedding Website",
+   "orders": [
+    {
+     "ext": "Ke-2026-08-01",
+     "number": "Shopify 2026-08-01 (1 order)",
+     "date": "2026-08-01",
+     "currency": "GBP",
+     "total": 33600,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 33600,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-05",
+     "number": "Shopify 2026-08-05 (1 order)",
+     "date": "2026-08-05",
+     "currency": "GBP",
+     "total": 1850,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1850,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-10",
+     "number": "Shopify 2026-08-10 (1 order)",
+     "date": "2026-08-10",
+     "currency": "GBP",
+     "total": 1500,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1500,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-11",
+     "number": "Shopify 2026-08-11 (1 order)",
+     "date": "2026-08-11",
+     "currency": "GBP",
+     "total": 4280,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 4280,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-14",
+     "number": "Shopify 2026-08-14 (1 order)",
+     "date": "2026-08-14",
+     "currency": "GBP",
+     "total": 11000,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 11000,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-25",
+     "number": "Shopify 2026-08-25 (1 order)",
+     "date": "2026-08-25",
+     "currency": "GBP",
+     "total": 14000,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 14000,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-26",
+     "number": "Shopify 2026-08-26 (1 order)",
+     "date": "2026-08-26",
+     "currency": "GBP",
+     "total": 1100,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1100,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-27",
+     "number": "Shopify 2026-08-27 (1 order)",
+     "date": "2026-08-27",
+     "currency": "GBP",
+     "total": 6800,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6800,
+       "desc": "Net sales"
+      }
+     ]
+    },
+    {
+     "ext": "Ke-2026-08-31",
+     "number": "Shopify 2026-08-31 (1 order)",
+     "date": "2026-08-31",
+     "currency": "GBP",
+     "total": 3210,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 3210,
+       "desc": "Net sales"
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "cat": "PAYMENT_FEES",
+     "amount": -4198,
+     "date": "2026-08-31",
+     "desc": "Shopify charges for August (from Excel)"
+    }
+   ]
+  },
+  {
+   "store": "Raymat Textiles Website",
+   "orders": [
+    {
+     "ext": "Ra-2026-08-01",
+     "number": "Shopify 2026-08-01 (1 order)",
+     "date": "2026-08-01",
+     "currency": "GBP",
+     "total": 4000,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 3333,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 667,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-03",
+     "number": "Shopify 2026-08-03 (1 order)",
+     "date": "2026-08-03",
+     "currency": "GBP",
+     "total": 1700,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1417,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 283,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-08",
+     "number": "Shopify 2026-08-08 (1 order)",
+     "date": "2026-08-08",
+     "currency": "GBP",
+     "total": 7650,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6375,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 1275,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-09",
+     "number": "Shopify 2026-08-09 (1 order)",
+     "date": "2026-08-09",
+     "currency": "GBP",
+     "total": 9350,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 7792,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 1558,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-10",
+     "number": "Shopify 2026-08-10 (1 order)",
+     "date": "2026-08-10",
+     "currency": "GBP",
+     "total": 38700,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 32250,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 6450,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-12",
+     "number": "Shopify 2026-08-12 (1 order)",
+     "date": "2026-08-12",
+     "currency": "GBP",
+     "total": 15000,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 12500,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 2500,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-19",
+     "number": "Shopify 2026-08-19 (1 order)",
+     "date": "2026-08-19",
+     "currency": "GBP",
+     "total": 5100,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 4250,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 850,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-23",
+     "number": "Shopify 2026-08-23 (1 order)",
+     "date": "2026-08-23",
+     "currency": "GBP",
+     "total": 2600,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 2167,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 433,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-25",
+     "number": "Shopify 2026-08-25 (1 order)",
+     "date": "2026-08-25",
+     "currency": "GBP",
+     "total": 14080,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 11733,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 2347,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-26",
+     "number": "Shopify 2026-08-26 (1 order)",
+     "date": "2026-08-26",
+     "currency": "GBP",
+     "total": 56780,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 47317,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 9463,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-28",
+     "number": "Shopify 2026-08-28 (2 orders)",
+     "date": "2026-08-28",
+     "currency": "GBP",
+     "total": 19000,
+     "items": [
+      {
+       "sku": null,
+       "title": "2 Shopify order(s), daily total",
+       "qty": 2
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 15833,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 3167,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-29",
+     "number": "Shopify 2026-08-29 (1 order)",
+     "date": "2026-08-29",
+     "currency": "GBP",
+     "total": 3400,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 2833,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 567,
+       "desc": "VAT"
+      }
+     ]
+    },
+    {
+     "ext": "Ra-2026-08-30",
+     "number": "Shopify 2026-08-30 (1 order)",
+     "date": "2026-08-30",
+     "currency": "GBP",
+     "total": 1300,
+     "items": [
+      {
+       "sku": null,
+       "title": "1 Shopify order(s), daily total",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1083,
+       "desc": "Net sales"
+      },
+      {
+       "cat": "TAX_COLLECTED",
+       "amount": 217,
+       "desc": "VAT"
+      }
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "cat": "PAYMENT_FEES",
+     "amount": -8783,
+     "date": "2026-08-31",
+     "desc": "Shopify charges for August (from Excel)"
+    }
+   ]
+  },
+  {
+   "store": "Kensingtons Amazon",
+   "orders": [],
+   "lines": [
+    {
+     "cat": "SALES",
+     "amount": 642000,
+     "date": "2026-08-31",
+     "desc": "Amazon sales for August (Excel total)"
+    },
+    {
+     "cat": "MARKETPLACE_FEES",
+     "amount": -115560,
+     "date": "2026-08-31",
+     "desc": "Amazon fees estimated at 18% (Excel)"
+    }
+   ]
+  },
+  {
+   "store": "Jawa Amazon",
+   "orders": [
+    {
+     "ext": "113-0127128-3430650",
+     "number": "113-0127128-3430650",
+     "date": "2026-08-28",
+     "currency": "USD",
+     "total": 21500,
+     "items": [
+      {
+       "sku": null,
+       "title": "18 to 26 Inch 4mm Diamond-Cut Ice Link C...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 21500,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -4300,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 10778,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "111-3954395-5785006",
+     "number": "111-3954395-5785006",
+     "date": "2026-08-26",
+     "currency": "USD",
+     "total": 29000,
+     "items": [
+      {
+       "sku": null,
+       "title": "Jawa Fashion 14K Yellow Gold Finish S Li...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 29000,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -5200,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 0,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "111-7580885-0193863",
+     "number": "111-7580885-0193863",
+     "date": "2026-08-25",
+     "currency": "USD",
+     "total": 53500,
+     "items": [
+      {
+       "sku": null,
+       "title": "18 to 26 Inch 4mm Diamond-Cut Ice Link C...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 53500,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -10175,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 33434,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "113-8942754-7229056",
+     "number": "113-8942754-7229056",
+     "date": "2026-08-22",
+     "currency": "USD",
+     "total": 19500,
+     "items": [
+      {
+       "sku": null,
+       "title": "18 to 26 Inch 4mm Diamond-Cut Ice Link C...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 19500,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -3900,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 9631,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "113-5052585-4092217",
+     "number": "113-5052585-4092217",
+     "date": "2026-08-04",
+     "currency": "USD",
+     "total": 29000,
+     "items": [
+      {
+       "sku": null,
+       "title": "Jawa Fashion 14K Yellow Gold Finish S Li...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 29000,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -5200,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 0,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "114-9858214-5087437",
+     "number": "114-9858214-5087437",
+     "date": "2026-08-04",
+     "currency": "USD",
+     "total": 23000,
+     "items": [
+      {
+       "sku": null,
+       "title": "18 to 26 Inch 4mm Diamond-Cut Ice Link C...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 23000,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -4600,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 11900,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "111-0917780-4960210",
+     "number": "111-0917780-4960210",
+     "date": "2026-08-04",
+     "currency": "USD",
+     "total": 29000,
+     "items": [
+      {
+       "sku": null,
+       "title": "Jawa Fashion 14K Yellow Gold Finish S Li...",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 29000,
+       "desc": "Product charges"
+      },
+      {
+       "cat": "MARKETPLACE_FEES",
+       "amount": -5200,
+       "desc": "Amazon fees"
+      }
+     ],
+     "cost": {
+      "itemCost": 0,
+      "supplier": "From Excel"
+     }
+    }
+   ],
+   "lines": [
+    {
+     "cat": "REFUNDS",
+     "amount": -1500,
+     "date": "2026-08-29",
+     "desc": "Refund 111-7580885-0193863"
+    },
+    {
+     "cat": "MARKETPLACE_FEES",
+     "amount": 221,
+     "date": "2026-08-29",
+     "desc": "Fee credit 111-7580885-0193863"
+    },
+    {
+     "cat": "REFUNDS",
+     "amount": -2500,
+     "date": "2026-08-25",
+     "desc": "Refund 111-7580885-0193863"
+    },
+    {
+     "cat": "MARKETPLACE_FEES",
+     "amount": 368,
+     "date": "2026-08-25",
+     "desc": "Fee credit 111-7580885-0193863"
+    },
+    {
+     "cat": "SUBSCRIPTION",
+     "amount": -3999,
+     "date": "2026-08-13",
+     "desc": "Amazon subscription fee"
+    }
+   ]
+  },
+  {
+   "store": "Jawa Fashion eBay",
+   "orders": [
+    {
+     "ext": "14-15100-62103",
+     "number": "14-15100-62103",
+     "date": "2026-08-31",
+     "currency": "USD",
+     "total": 22511,
+     "items": [
+      {
+       "sku": "140096",
+       "title": "925 Sterling Silver 4.8mm Rope Chain Diamond Cut Necklace Rhodium Plated[20 Inch]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 20700,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 9720,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "12-15081-59893",
+     "number": "12-15081-59893",
+     "date": "2026-08-26",
+     "currency": "USD",
+     "total": 4988,
+     "items": [
+      {
+       "sku": "327326979867",
+       "title": "925 Sterling Silver Round Box Chain Necklace Men Diamond Cut 2.5-6mm Men Women[22 in,5mm]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 4678,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 3600,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "09-15085-41953",
+     "number": "09-15085-41953",
+     "date": "2026-08-26",
+     "currency": "USD",
+     "total": 0,
+     "items": [
+      {
+       "sku": "327326979867",
+       "title": "925 Sterling Silver Round Box Chain Necklace Men Diamond Cut 2.5-6mm Men Women[26 in,6mm]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 4922,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 4116,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "20-15058-71649",
+     "number": "20-15058-71649",
+     "date": "2026-08-24",
+     "currency": "USD",
+     "total": 17428,
+     "items": [
+      {
+       "sku": "137983",
+       "title": "925 Sterling Silver Miami Cuban Link Chain Necklace Bracelet 4.1mm Rhodium[24 Inch]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 16100,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 6222,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "08-15070-82259",
+     "number": "08-15070-82259",
+     "date": "2026-08-22",
+     "currency": "USD",
+     "total": 24921,
+     "items": [
+      {
+       "sku": "138038",
+       "title": "925 Sterling Silver Miami Cuban Link Chain Necklace Bracelet 4.1mm Rhodium[20 Inch]",
+       "qty": 1
+      },
+      {
+       "sku": "138037",
+       "title": "925 Sterling Silver Miami Cuban Link Chain Necklace Bracelet 4.1mm Rhodium[18 Inch]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 11960,
+       "desc": "Sold for"
+      },
+      {
+       "cat": "SALES",
+       "amount": 11040,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 13585,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "14-15054-78463",
+     "number": "14-15054-78463",
+     "date": "2026-08-21",
+     "currency": "USD",
+     "total": 0,
+     "items": [
+      {
+       "sku": "B0GRTWW88X",
+       "title": "Toe Rings 925 Sterling Silver, Gold Plated, Stainless Steel 2mm 3mm 4mm[Stainless Steel Gold 2mm]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1563,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": null
+    },
+    {
+     "ext": "20-15038-86619",
+     "number": "20-15038-86619",
+     "date": "2026-08-20",
+     "currency": "USD",
+     "total": 12947,
+     "items": [
+      {
+       "sku": "138038",
+       "title": "925 Sterling Silver Miami Cuban Link Chain Necklace Bracelet 4.1mm Rhodium[20 Inch]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 11960,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 6513,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "27-14994-69393",
+     "number": "27-14994-69393",
+     "date": "2026-08-12",
+     "currency": "USD",
+     "total": 1174,
+     "items": [
+      {
+       "sku": "227413229506",
+       "title": "3Pcs Gold Hoop Nose Rings Stainless Steel Clicker Piercing Set[3-Piece Hoops,16Gauge,6/8/10mm]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1053,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 778,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "15-15013-01433",
+     "number": "15-15013-01433",
+     "date": "2026-08-12",
+     "currency": "USD",
+     "total": 0,
+     "items": [
+      {
+       "sku": "227330648809",
+       "title": "Jewelry Cleaning Cloth Silver, Gold and Platinum For Polishing and Shining 4x6in",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 459,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 100,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "18-15005-08905",
+     "number": "18-15005-08905",
+     "date": "2026-08-11",
+     "currency": "USD",
+     "total": 1277,
+     "items": [
+      {
+       "sku": "227413229506",
+       "title": "3Pcs Gold Hoop Nose Rings Stainless Steel Clicker Piercing Set[3-Piece,18Gauge,Assorted Sizes]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1145,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 778,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "25-14986-48383",
+     "number": "25-14986-48383",
+     "date": "2026-08-10",
+     "currency": "USD",
+     "total": 1657,
+     "items": [
+      {
+       "sku": "B0GRTWW88X",
+       "title": "Toe Rings 925 Sterling Silver, Gold Plated, Stainless Steel 2mm 3mm 4mm[Stainless Steel Gold 2mm]",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 1563,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 635,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "25-14984-22550",
+     "number": "25-14984-22550",
+     "date": "2026-08-09",
+     "currency": "USD",
+     "total": 983,
+     "items": [
+      {
+       "sku": "227414893784",
+       "title": "2 Pack Ear Piercing Gun Kit Disposable Self Ear Piercing Tool with Studs & Pads",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 882,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 532,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "25-14974-25344",
+     "number": "25-14974-25344",
+     "date": "2026-08-07",
+     "currency": "USD",
+     "total": 3059,
+     "items": [
+      {
+       "sku": "227413282696",
+       "title": "4 Pieces 18G Gold Hinged Clicker Hoop Rings Surgical Steel Nose Cartilage Ring[18G - Gold - (6mm-12mm) - 4Pairs]",
+       "qty": 2
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 2832,
+       "desc": "Sold for"
+      }
+     ],
+     "cost": {
+      "itemCost": 2158,
+      "supplier": "From Excel"
+     }
+    }
+   ],
+   "lines": [
+    {
+     "cat": "MARKETPLACE_FEES",
+     "amount": -17500,
+     "date": "2026-08-31",
+     "desc": "eBay fees for August (from Excel)"
+    },
+    {
+     "cat": "MARKETPLACE_FEES",
+     "amount": -2800,
+     "date": "2026-08-31",
+     "desc": "eBay other charges for August (from Excel)"
+    }
+   ]
+  },
+  {
+   "store": "Jawa Jewelers Website",
+   "orders": [
+    {
+     "ext": "#2532",
+     "number": "#2532",
+     "date": "2026-08-10",
+     "currency": "USD",
+     "total": 5927,
+     "items": [
+      {
+       "sku": null,
+       "title": "925 Sterling Silver 2MM Rope Chain Necklace",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 5927,
+       "date": "2026-08-10",
+       "desc": "Net sales"
+      }
+     ],
+     "cost": {
+      "itemCost": 2604,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "#2534",
+     "number": "#2534",
+     "date": "2026-08-11",
+     "currency": "USD",
+     "total": 38438,
+     "items": [
+      {
+       "sku": null,
+       "title": "2MM 10K Yellow Gold Figaro Link Chain Necklace",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 38438,
+       "date": "2026-08-11",
+       "desc": "Net sales"
+      }
+     ],
+     "cost": {
+      "itemCost": 14786,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "#2533",
+     "number": "#2533",
+     "date": "2026-08-11",
+     "currency": "USD",
+     "total": 401238,
+     "items": [
+      {
+       "sku": null,
+       "title": "6.5MM 10K Yellow Gold Pave Figaro Link Chain",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 200619,
+       "date": "2026-08-11",
+       "desc": "Net sales"
+      },
+      {
+       "cat": "SALES",
+       "amount": 200619,
+       "date": "2026-08-19",
+       "desc": "Net sales"
+      },
+      {
+       "cat": "REFUNDS",
+       "amount": -200619,
+       "date": "2026-08-19",
+       "desc": "Reversal"
+      },
+      {
+       "cat": "REFUNDS",
+       "amount": -200619,
+       "date": "2026-08-19",
+       "desc": "Reversal"
+      }
+     ],
+     "cost": null
+    },
+    {
+     "ext": "#2537",
+     "number": "#2537",
+     "date": "2026-08-22",
+     "currency": "USD",
+     "total": 37507,
+     "items": [
+      {
+       "sku": null,
+       "title": "925 Sterling Silver 5MM Rope Chain Necklace",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 37507,
+       "date": "2026-08-22",
+       "desc": "Net sales"
+      }
+     ],
+     "cost": {
+      "itemCost": 28755,
+      "supplier": "From Excel"
+     }
+    },
+    {
+     "ext": "#2538",
+     "number": "#2538",
+     "date": "2026-08-24",
+     "currency": "USD",
+     "total": 6586,
+     "items": [
+      {
+       "sku": null,
+       "title": "925 Sterling Silver 2MM Rope Chain Necklace",
+       "qty": 1
+      }
+     ],
+     "lines": [
+      {
+       "cat": "SALES",
+       "amount": 6586,
+       "date": "2026-08-24",
+       "desc": "Net sales"
+      }
+     ],
+     "cost": {
+      "itemCost": 2988,
+      "supplier": "From Excel"
+     }
+    }
+   ],
+   "lines": [
+    {
+     "cat": "PAYMENT_FEES",
+     "amount": -9198,
+     "date": "2026-08-31",
+     "desc": "Shopify charges for August (from Excel)"
+    }
+   ]
+  }
+ ],
+ "expenses": [
+  {
+   "client": "Kensingtons",
+   "provider": "Parcelforce",
+   "group": "SHIPPING",
+   "amount": 127000,
+   "currency": "GBP",
+   "date": "2026-08-31",
+   "description": "Parcelforce labels for August"
+  },
+  {
+   "client": "Jawa Jewelers",
+   "provider": null,
+   "group": "PURCHASES",
+   "amount": 28108,
+   "currency": "USD",
+   "date": "2026-08-31",
+   "description": "Bulk purchases for August"
+  },
+  {
+   "client": "Jawa Jewelers",
+   "provider": "ShipStation",
+   "group": "SHIPPING",
+   "amount": 16551,
+   "currency": "USD",
+   "date": "2026-08-31",
+   "description": "ShipStation for August"
+  }
+ ]
+}
