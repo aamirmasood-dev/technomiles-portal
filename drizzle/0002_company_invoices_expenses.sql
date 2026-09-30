@@ -1,5 +1,5 @@
 CREATE TABLE `billing_plans` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`description` varchar(512) NOT NULL,
 	`amount` bigint NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `billing_plans` (
 );
 --> statement-breakpoint
 CREATE TABLE `company_accounts` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`currency` char(3) NOT NULL,
 	`opening_balance` bigint NOT NULL DEFAULT 0,
@@ -21,7 +21,7 @@ CREATE TABLE `company_accounts` (
 );
 --> statement-breakpoint
 CREATE TABLE `company_expenses` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`expense_date` date NOT NULL,
 	`category` enum('RENT','INTERNET','UTILITIES','SUBSCRIPTIONS','HARDWARE','OTHER') NOT NULL,
 	`description` varchar(512) NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `company_expenses` (
 );
 --> statement-breakpoint
 CREATE TABLE `company_recurring_expenses` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`category` enum('RENT','INTERNET','UTILITIES','SUBSCRIPTIONS','HARDWARE','OTHER') NOT NULL,
 	`description` varchar(512) NOT NULL,
 	`amount` bigint NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `company_recurring_expenses` (
 );
 --> statement-breakpoint
 CREATE TABLE `invoice_lines` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`invoice_id` bigint unsigned NOT NULL,
 	`description` varchar(512) NOT NULL,
 	`amount` bigint NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `invoice_lines` (
 );
 --> statement-breakpoint
 CREATE TABLE `invoices` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`invoice_number` varchar(64) NOT NULL,
 	`issue_date` date NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE `invoices` (
 );
 --> statement-breakpoint
 CREATE TABLE `partners` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`share_bps` int NOT NULL,
 	`user_id` bigint unsigned,
@@ -87,7 +87,7 @@ CREATE TABLE `partners` (
 );
 --> statement-breakpoint
 CREATE TABLE `payments` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned,
 	`invoice_id` bigint unsigned,
 	`received_date` date NOT NULL,

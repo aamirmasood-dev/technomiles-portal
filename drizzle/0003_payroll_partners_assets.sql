@@ -1,5 +1,5 @@
 CREATE TABLE `assets` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`category` enum('FURNITURE','COMPUTERS','LAPTOPS','ELECTRONICS','OTHER') NOT NULL,
 	`quantity` int NOT NULL DEFAULT 1,
@@ -17,7 +17,7 @@ CREATE TABLE `assets` (
 );
 --> statement-breakpoint
 CREATE TABLE `company_months` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`period` char(7) NOT NULL,
 	`income` bigint NOT NULL,
 	`expenses` bigint NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `company_months` (
 );
 --> statement-breakpoint
 CREATE TABLE `partner_entries` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`partner_id` bigint unsigned NOT NULL,
 	`entry_date` date NOT NULL,
 	`type` enum('OPENING','PROFIT_SHARE','WITHDRAWAL','PERSONAL_EXPENSE','TRANSFER','ADJUSTMENT') NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `partner_entries` (
 );
 --> statement-breakpoint
 CREATE TABLE `payroll_items` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`staff_id` bigint unsigned NOT NULL,
 	`period` char(7) NOT NULL,
 	`base_pay` bigint NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE `payroll_items` (
 );
 --> statement-breakpoint
 CREATE TABLE `staff_members` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`job_title` varchar(191),
 	`pay_type` enum('SALARY','COMMISSION') NOT NULL,

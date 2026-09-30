@@ -15,7 +15,7 @@ CREATE TABLE `business_settings` (
 );
 --> statement-breakpoint
 CREATE TABLE `clients` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`currency` char(3) NOT NULL,
 	`timezone` varchar(64) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `clients` (
 );
 --> statement-breakpoint
 CREATE TABLE `contract_terms` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`base_label` varchar(64) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE `contract_terms` (
 );
 --> statement-breakpoint
 CREATE TABLE `fx_rates` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`rate_date` date NOT NULL,
 	`base` char(3) NOT NULL,
 	`quote` char(3) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `fx_rates` (
 );
 --> statement-breakpoint
 CREATE TABLE `ledger_lines` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`store_id` bigint unsigned NOT NULL,
 	`external_id` varchar(191) NOT NULL,
 	`order_id` bigint unsigned,
@@ -73,7 +73,7 @@ CREATE TABLE `ledger_lines` (
 );
 --> statement-breakpoint
 CREATE TABLE `manual_expenses` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`store_id` bigint unsigned,
 	`shipping_provider_id` bigint unsigned,
@@ -88,7 +88,7 @@ CREATE TABLE `manual_expenses` (
 );
 --> statement-breakpoint
 CREATE TABLE `order_costs` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`order_id` bigint unsigned NOT NULL,
 	`supplier` varchar(191),
 	`item_cost` bigint NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `order_costs` (
 );
 --> statement-breakpoint
 CREATE TABLE `order_items` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`order_id` bigint unsigned NOT NULL,
 	`external_id` varchar(191) NOT NULL,
 	`sku` varchar(191),
@@ -114,7 +114,7 @@ CREATE TABLE `order_items` (
 );
 --> statement-breakpoint
 CREATE TABLE `orders` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`store_id` bigint unsigned NOT NULL,
 	`external_id` varchar(191) NOT NULL,
 	`order_number` varchar(191),
@@ -128,7 +128,7 @@ CREATE TABLE `orders` (
 );
 --> statement-breakpoint
 CREATE TABLE `recurring_expenses` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`store_id` bigint unsigned,
 	`deduction_group` enum('REFUNDS','MARKETPLACE','PAYMENT','SHIPPING','ADVERTISING','SUBSCRIPTIONS','OTHER_PLATFORM','COGS','PURCHASES','OTHER_MANUAL') NOT NULL,
@@ -142,7 +142,7 @@ CREATE TABLE `recurring_expenses` (
 );
 --> statement-breakpoint
 CREATE TABLE `shipping_providers` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`active` boolean NOT NULL DEFAULT true,
@@ -150,7 +150,7 @@ CREATE TABLE `shipping_providers` (
 );
 --> statement-breakpoint
 CREATE TABLE `statement_adjustments` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`term_id` bigint unsigned NOT NULL,
 	`source_period` char(7) NOT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE `statement_adjustments` (
 );
 --> statement-breakpoint
 CREATE TABLE `statements` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`term_id` bigint unsigned NOT NULL,
 	`period` char(7) NOT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE `statements` (
 );
 --> statement-breakpoint
 CREATE TABLE `stores` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`client_id` bigint unsigned NOT NULL,
 	`platform` enum('SHOPIFY','EBAY','AMAZON','WALMART') NOT NULL,
 	`name` varchar(191) NOT NULL,
@@ -198,7 +198,7 @@ CREATE TABLE `stores` (
 );
 --> statement-breakpoint
 CREATE TABLE `sync_logs` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`store_id` bigint unsigned NOT NULL,
 	`started_at` datetime NOT NULL,
 	`finished_at` datetime,
@@ -212,7 +212,7 @@ CREATE TABLE `sync_logs` (
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
-	`id` serial AUTO_INCREMENT NOT NULL,
+	`id` serial NOT NULL,
 	`email` varchar(191) NOT NULL,
 	`name` varchar(191) NOT NULL,
 	`password_hash` varchar(100) NOT NULL,
