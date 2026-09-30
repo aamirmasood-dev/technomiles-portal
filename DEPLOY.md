@@ -11,7 +11,7 @@ Create a database and a user with a strong password. Note the host, database nam
 - Build command: `npm run build:hostinger`
   (creates/updates the tables, adds the default clients, partners, bank account and staff if missing, then builds)
 - Start command: `npm start` (uses Hostinger's `$PORT`)
-- Domain: a subdomain such as `accounts.technomiles.com`.
+- Domain: a subdomain such as `admin.technomiles.com`.
 
 ## 3. Environment variables (in the web app's settings)
 | Name | Value |
@@ -27,7 +27,7 @@ Open the site. With an empty database the login page shows **First-time setup**:
 ## 5. Daily sync (hPanel → Advanced → Cron Jobs)
 Every hour:
 ```
-curl -s "https://accounts.technomiles.com/api/cron/sync?key=YOUR_CRON_SECRET"
+curl -s "https://admin.technomiles.com/api/cron/sync?key=YOUR_CRON_SECRET"
 ```
 Each call syncs the stores not synced in the last 20 hours.
 
