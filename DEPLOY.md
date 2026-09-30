@@ -1,37 +1,28 @@
 # Deploying to Hostinger
 
-For the owners. The app runs on Hostinger as a Node.js web app built from the private GitHub repository.
+The live app runs at **https://admin.technomiles.com** (Hostinger account `u405516736`, Node.js web app, Node 20, Next.js).
 
-## 1. Create the database (hPanel → Databases → MySQL Databases)
-Create a database and a user with a strong password. Note the host, database name, user and password.
+## How it is set up
+- **Database:** `u405516736_tmportal` on MariaDB 11.8 (`srv1816.hstgr.io`). The app connects as `localhost`.
+  Remote access is allowed only for the office Mac's IP, for running migrations.
+- **Environment variables** (set on the web app): `DATABASE_URL`, `SESSION_SECRET`, `ENCRYPTION_KEY`, `CRON_SECRET`.
+  Copies are in `.env.hostinger` on the Mac (never committed). **Never change `ENCRYPTION_KEY`**, or saved store credentials can no longer be read.
+- **Build:** `npm run build` (`next build --webpack`; Turbopack cannot run in Hostinger's build sandbox).
+- **Cron:** hourly at :05, `curl -s "https://admin.technomiles.com/api/cron/sync?key=CRON_SECRET"`.
 
-## 2. Add the website (hPanel → Websites → Add website → Deploy Web App)
-- Source: **GitHub**, repository `aamirmasood-dev/technomiles-portal`, branch `main`.
-- Node.js version: 22 (or the newest offered, at least 20).
-- Build command: `npm run build:hostinger`
-  (creates/updates the tables, adds the default clients, partners, bank account and staff if missing, then builds)
-- Start command: `npm start` (uses Hostinger's `$PORT`)
-- Domain: a subdomain such as `admin.technomiles.com`.
+## Deploying an update
+1. Commit and push to GitHub (`main`).
+2. If the change added a migration (`npm run db:generate`), apply it to the live database first:
+   `set -a; source .env.hostinger; set +a; npx drizzle-kit migrate`
+3. Deploy: from Claude Code with the Hostinger connector (`hosting_deploy-js-application` with a `git archive` of `HEAD`),
+   or in hPanel → Websites → admin.technomiles.com → Deploy, uploading the archive.
+   (To deploy automatically on every push, connect GitHub once in hPanel → Websites → Manage → Advanced → Git.)
+4. Watch the build log; the site restarts automatically when the build completes.
 
-## 3. Environment variables (in the web app's settings)
-| Name | Value |
-|---|---|
-| `DATABASE_URL` | `mysql://USER:PASSWORD@HOST:3306/DATABASE` |
-| `SESSION_SECRET` | a long random string (e.g. from `openssl rand -base64 32`) |
-| `ENCRYPTION_KEY` | 32 random bytes, base64 (`openssl rand -base64 32`). Never change it later, or saved store credentials can no longer be read. |
-| `CRON_SECRET` | a long random string |
+## Fresh database
+With no users, `/login` shows **First-time setup** to create the administrator. Default clients, partners, bank account and staff are added with
+`npx tsx scripts/seed-clients.ts` and `npx tsx scripts/seed-company.ts` (safe to re-run).
 
-## 4. First sign-in
-Open the site. With an empty database the login page shows **First-time setup**: create the administrator account. Add the second partner and staff users from **Settings → Users and access**.
-
-## 5. Daily sync (hPanel → Advanced → Cron Jobs)
-Every hour:
-```
-curl -s "https://admin.technomiles.com/api/cron/sync?key=YOUR_CRON_SECRET"
-```
-Each call syncs the stores not synced in the last 20 hours.
-
-## 6. Before real use
-- Reconnect each store on its Stores page (credentials saved on a laptop are not copied).
-- In **Company accounts**, record the opening balances (partners, Albaraka Bank) for 1 October 2026.
-- The August demo data only exists on the laptop; the live database starts clean.
+## Migrations and MariaDB
+Hostinger uses MariaDB. `npm run db:generate` runs `scripts/mariadb-compat.mjs`, which fixes SQL MariaDB rejects (`serial AUTO_INCREMENT`).
+JSON columns are parsed from strings as well (MariaDB stores JSON as LONGTEXT).

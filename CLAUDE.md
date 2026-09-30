@@ -42,7 +42,7 @@ These apply to **every client**, current and future.
 
 - **Next.js** (App Router, TypeScript), server actions for forms.
 - **MySQL** (Hostinger provides managed MySQL). Use an ORM that has no native binaries to download; Drizzle + mysql2 is a good fit.
-- Hosted on the owner's **Hostinger Business** plan as a Node.js web app (hPanel → Websites → Add website → **Deploy Web App**, using **file upload**, not GitHub). Start command must honour `$PORT`. Develop and test **locally first**, then deploy.
+- Hosted on the owner's **Hostinger** plan as a Node.js web app at **https://admin.technomiles.com** (live since 30 Sep 2026). Database is **MariaDB 11.8** (keep SQL compatible). Build uses **webpack** (`next build --webpack`). Deployment steps, live database and migrations: `DEPLOY.md`. Develop and test locally first, then deploy.
 - Daily sync is triggered by an hPanel **cron job** calling a protected URL, e.g. `curl -s "https://<domain>/api/cron/sync?key=$CRON_SECRET"`. Also a "Sync now" button per store.
 - Login for the owners only (email + password, bcrypt, signed session cookie). A script to create users.
 - All platform credentials encrypted at rest (AES-256-GCM, key from env `ENCRYPTION_KEY`). Never log secrets.
