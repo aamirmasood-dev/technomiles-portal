@@ -11,12 +11,20 @@ import {
   date,
   datetime,
   timestamp,
-  json,
+  customType,
   decimal,
   mysqlEnum,
   uniqueIndex,
   index,
 } from "drizzle-orm/mysql-core";
+
+// JSON column that also works on MariaDB, where JSON is stored as LONGTEXT and comes back as a string.
+const json = <T>(name: string) =>
+  customType<{ data: T; driverData: string }>({
+    dataType: () => "json",
+    toDriver: (value) => JSON.stringify(value),
+    fromDriver: (value) => (typeof value === "string" ? JSON.parse(value) : value) as T,
+  })(name);
 
 // Money is always stored as integer minor units (pence / cents).
 const money = (name: string) => bigint(name, { mode: "number" });
@@ -245,11 +253,11 @@ export const contractTerms = mysqlTable("contract_terms", {
   // Rate in basis points: 10% = 1000, 50% = 5000
   rateBps: int("rate_bps").notNull(),
   fixedFee: money("fixed_fee").notNull().default(0),
-  groups: json("deduction_groups").$type<DeductionGroup[]>().notNull(),
+  groups: json<DeductionGroup[]>("deduction_groups").notNull(),
   includeShipping: boolean("include_shipping").notNull().default(true),
   includeTax: boolean("include_tax").notNull().default(false),
   // null = all of the client's stores
-  storeIds: json("store_ids").$type<number[] | null>(),
+  storeIds: json<number[] | null>("store_ids"),
   carryForwardLoss: boolean("carry_forward_loss").notNull().default(true),
   effectiveFrom: char("effective_from", { length: 7 }).notNull(),
   effectiveTo: char("effective_to", { length: 7 }),
@@ -267,7 +275,7 @@ export const statements = mysqlTable(
     amountDue: money("amount_due").notNull(),
     lossCarriedOut: money("loss_carried_out").notNull().default(0),
     invoiceNumber: varchar("invoice_number", { length: 64 }).notNull(),
-    snapshot: json("snapshot").notNull(),
+    snapshot: json<unknown>("snapshot").notNull(),
     closedAt: datetime("closed_at").notNull(),
     closedBy: id("closed_by"),
   },
@@ -449,7 +457,7 @@ export const staffMembers = mysqlTable("staff_members", {
   // COMMISSION: rate of "net sales after all expenses" of the chosen stores of one client (Ehsaan: 1% of Kensingtons Amazon + eBay).
   commissionBps: int("commission_bps"),
   commissionClientId: id("commission_client_id"),
-  commissionStoreIds: json("commission_store_ids").$type<number[]>(),
+  commissionStoreIds: json<number[]>("commission_store_ids"),
   startDate: date("start_date", { mode: "string" }),
   active: boolean("active").notNull().default(true),
   notes: text("notes"),
